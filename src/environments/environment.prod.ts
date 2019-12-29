@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://ux-v2.andromedo.net/api/index.php?s=contact&a=getContacts',
 };
