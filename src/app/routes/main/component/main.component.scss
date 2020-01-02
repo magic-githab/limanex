@@ -1,269 +1,29 @@
-.app-wrapper {
+.main-wrapper {
+  width: 100vw;
+  height: 100vh;
 
-    background-color: #f5f5f5;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
-    box-sizing: border-box;
+  background-color: #f3f3f4;
 
-    padding-top: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  app-header {
+    z-index: 2;
+  }
 
-    form {
-        width: 85%;
-        margin: 0 auto 25px;
+  .content-wrapper {
+    flex: 1;
+    display: flex;
 
-        label {
-            display: block;
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
+    overflow: hidden;
 
-        input {
-            box-sizing: border-box;
-            font-size: 15px;
-            padding: 15px;
-            margin: 0;
-            border: 0;
-            border-radius: 5;
-            width: 100%;
-            box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.253);
-        }
+    app-sidebar {
+      z-index: 1;
     }
 
-    .table {
-        box-sizing: border-box;
-        width: 85%;
-
-        background-color: white;
-        border-radius: 5px;
-
-        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.253);
-
-        padding: 0px 15px;
-        margin: 0 auto;
-        
-        .row {
-            .block {
-                padding: 15px;
-            
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            &.loading p {
-                text-align: center;
-            }
-        }
-        .table-header {
-            .row {
-                display: flex;
-                justify-content: space-between;
-                p {
-                    font-weight: bold;
-                    cursor: pointer;
-                    fa-icon {
-                        font-size: 12px;
-                        padding-left: 2.5px;
-                        padding-right: 0;
-                    }
-                }
-            }
-        }
-        .table-body {
-            .row {
-                .preview {
-                    display: flex;
-                    justify-content: space-between;
-                    border-bottom: 1px solid #adadad;
-                    fa-icon {
-                        color: lightgray;
-                    }
-                    .contacts {
-                        .phones {
-                            margin-bottom: 5px;
-                        }
-                    }
-                    .address {
-                        .city {
-                            margin-bottom: 5px;
-                        }
-                    }
-                    p.roles {    
-                        display: flex;
-                        align-items: center;
-                        span {
-                            display: block;
-                            padding: 5px 10px;
-                            background-color: lightgray;
-                            border-radius: 7px;
-                            margin-right: 5px;
-                            &:last-child {
-                                margin-right: 0px;
-                            }
-                        }    
-                    }
-                }
-                .more {
-                    border-bottom: 1px solid #adadad;
-                    padding: 15px;
-                    p {
-                        font-weight: bold;
-                        padding: 5px 0px;
-                        span {
-                            font-weight: 100;
-                        }
-                        &:last-child {
-                            margin-bottom: 0px;
-                        }
-                        &.roles {
-                            display: flex;
-                            align-items: center;
-                            span {
-                                display: block;
-                                padding: 5px 10px;
-                                background-color: lightgray;
-                                border-radius: 7px;
-                                margin-left: 5px;
-                            }    
-                        }
-                    }
-                }
-                &:last-child {
-                    border-bottom: none;
-                }
-                &.active {
-                    .preview {
-                        background-color: #e9e9e9;
-                    }
-                    
-                }
-                &:hover .preview {
-                    background-color: #e9e9e9;
-                    cursor: pointer;
-                }
-            }
-        }
+    .routes-wrapper {
+      flex: 1;
+      overflow: auto;
     }
-}
-
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {  
-    .block {
-        &.arrow {
-            width: 1%;
-        }
-        &.name {
-            width: 40%;
-        }
-        &.roles {
-            width: 59%;
-        }
-        &.address,
-        &.contacts,
-        &.id,
-        &.added {
-            display: none;
-        }
-    }
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) { 
-    .block {
-        &.arrow {
-            width: 1%;
-        }
-        &.name {
-            width: 30%;
-        }
-        &.address {
-            width: 29%;
-        }
-        &.roles {
-            width: 40%;
-        }
-        &.contacts,
-        &.id,
-        &.added {
-            display: none;
-        }
-    }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {  
-    .block {
-        &.arrow {
-            width: 1%;
-        }
-        &.name {
-            width: 20%;
-        }
-        &.address {
-            width: 19%;
-        }
-        &.roles {
-            width: 30%;
-        }
-        &.contacts {
-            width: 30%;
-        }
-        &.id,
-        &.added {
-            display: none;
-        }
-    }
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) { 
-    .block {
-        &.arrow {
-            width: 1%;
-        }
-        &.name {
-            width: 15%;
-        }
-        &.address {
-            width: 19%;
-        }
-        &.roles {
-            width: 30%;
-        }
-        &.contacts {
-            width: 25%;
-        }
-        &.id {
-            width: 10%;
-        }
-        &.added {
-            display: none;
-        }
-    }
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  
-    .block {
-        &.arrow {
-            width: 1%;
-        }
-        &.name {
-            width: 15%;
-        }
-        &.address {
-            width: 19%;
-        }
-        &.roles {
-            width: 22.5%;
-        }
-        &.contacts {
-            width: 25%;
-        }
-        &.id {
-            width: 7.5%;
-        }
-        &.added {
-            width: 10%;
-        }
-    }
+  }
 }

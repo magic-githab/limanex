@@ -1,0 +1,14 @@
+<aside *ngIf="show">
+  <ul>
+    <li>
+      <p>Inspector</p>
+      <span>админ</span>
+    </li>
+    <li *ngFor="let item of items">
+      <a [routerLink]="item.route" routerLinkActive="active">
+        <fa-icon [icon]="['fas', item.icon]"></fa-icon>
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+</aside>

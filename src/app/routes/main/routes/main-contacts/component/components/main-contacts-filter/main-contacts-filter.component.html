@@ -1,0 +1,12 @@
+  <form [formGroup]="filterForm">
+    <label>
+      <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+      фильтр
+    </label>
+    <div class="input-wrapper">
+      <button (click)="onClickHandler()">
+        <fa-icon [icon]="['fas', 'search']"></fa-icon>
+      </button>
+      <input type="text" formControlName="filter" placeholder="фильтр" />
+    </div>
+  </form>

@@ -1,0 +1,48 @@
+aside {
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+  ul {
+    li {
+      font-size: 14px;
+
+      a {
+        display: flex;
+
+        padding: 15px 125px 15px 25px;
+        color: #676a6c;
+        border-left: 4px solid transparent;
+
+        fa-icon {
+          font-size: 12px;
+          margin-right: 7.5px;
+        }
+
+        &.active {
+          border-left-color: #D32F2F;
+          font-weight: bold;
+        }
+      }
+
+      &:first-child {
+        background-color: #2f4050;
+        padding: 15px 125px 15px 10px;
+
+        p {
+          margin-bottom: 5px;
+          color: #DFE4ED;
+        }
+
+        span {
+          color: #fff;
+        }
+      }
+
+    }
+
+
+  }
+}

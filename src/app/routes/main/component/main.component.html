@@ -1,80 +1,10 @@
-<div class="app-wrapper">
-
-
-    <form [formGroup]="filterForm">
-        <label>{{'title' | language}}</label>
-        <input type="text" formControlName="filter" placeholder="Filter by: Id | Name | Email | Age">
-    </form>
-  
-    <div class="table"
-        infiniteScroll
-        [infiniteScrollThrottle]="500"
-        (scrolled)="getContacts()"
-    >
-        <div class="table-header">
-            <div class="row">
-                <p class="block arrow"></p>
-                <p class="block name" (click)="sortContacts('name')">
-                    Name
-                    <fa-icon class="block arrow" [icon]="['fas', 'sort']" *ngIf="sortedBy === 'name'"></fa-icon>
-                </p>
-                <p class="block address" (click)="sortContacts('address')">
-                    Address
-                    <fa-icon class="block arrow" [icon]="['fas', 'sort']" *ngIf="sortedBy === 'address'"></fa-icon>
-                </p>
-                <p class="block roles" (click)="sortContacts('roles')">
-                    Roles
-                    <fa-icon class="block arrow" [icon]="['fas', 'sort']" *ngIf="sortedBy === 'roles'"></fa-icon>
-                </p>
-                <p class="block contacts" (click)="sortContacts('email')">
-                    Contact info
-                    <fa-icon class="block arrow" [icon]="['fas', 'sort']" *ngIf="sortedBy === 'email'"></fa-icon>
-                </p>
-                <p class="block id" (click)="sortContacts('id')">
-                    Id
-                    <fa-icon class="block arrow" [icon]="['fas', 'sort']" *ngIf="sortedBy === 'id'"></fa-icon>
-                </p>
-                <p class="block added" (click)="sortContacts('insertByID')">
-                    Added by
-                    <fa-icon class="block arrow" [icon]="['fas', 'sort']" *ngIf="sortedBy === 'insertByID'"></fa-icon>
-                </p>
-            </div>
-        </div>
-        
-        <div class="table-body">
-            <div 
-                class="row" 
-                *ngFor="let contact of sortedContacts; let row = index"
-                (click)="onClick(row);"
-                [ngClass]="{'active': activeRow === row}"
-            >
-                <div class="preview">
-                    <fa-icon class="block arrow" [icon]="['fas', 'chevron-down']" [rotate]="activeRow === row ? 0 : 270 "></fa-icon>
-                    <p class="block name">{{contact.name}}</p>
-                    <div class="block address">
-                        <p class="city">{{contact.address.cityName}}</p>
-                        <p class="street">{{contact.address.street}}</p>
-                    </div>
-                    <p class="block roles">
-                        <span *ngFor="let role of contact.roles | keyvalue">{{role.key}}</span>
-                    </p>
-                    <div class="block contacts">
-                        <p class="phones"><span *ngFor="let phone of contact.phones">{{phone.prefix}}{{phone.phone}}</span></p>
-                        <p class="email">{{contact.email}}</p>
-                    </div>
-                    <p class="block id">{{contact.uniqueCode}}</p>
-                    <p class="block added">{{contact.insertBy.name}}</p>
-                </div>
-                <div class="more" *ngIf="activeRow === row">
-                    <p>Phones: <span *ngFor="let phone of contact.phones">{{phone.prefix}}{{phone.phone}}</span></p>
-                    <p>Email: <span>{{contact.email}}</span></p>
-                    <p>Uniq Code: <span>{{contact.uniqueCode}}</span></p>
-                    <p>Added by: <span>{{contact.insertBy.name}}</span></p>
-                </div>
-            </div>
-            <div class="row loading">
-                <p class="block">{{ noData ? 'No More Data' : 'Loading...'}}</p>
-            </div>
-        </div>
+<div class="main-wrapper">
+  <app-main-header (onToogleSidebar)="toogleSidebar()"></app-main-header>
+  <div class="content-wrapper">
+    <app-main-sidebar [show]="showSidebar"></app-main-sidebar>
+    <div class="routes-wrapper" infiniteScroll [infiniteScrollThrottle]="500" (scrolled)="getContacts()"
+      [scrollWindow]="false">
+      <router-outlet></router-outlet>
     </div>
   </div>
+</div>
