@@ -9,21 +9,12 @@
   </div>
 
   <div class="table-body">
-    <div
-      *ngFor="
+    <div *ngFor="
         let contact of contacts$ | async;
         let row = index;
-        trackBy: trackByFn
-      "
-      (click)="onClick(row)"
-      [ngClass]="{ row: true, active: activeRow === row }"
-    >
+      " (click)="onClick(row)" [ngClass]="{ row: true, active: activeRow === row }">
       <div class="preview">
-        <fa-icon
-          class="block arrow"
-          [icon]="['fas', 'chevron-down']"
-          [rotate]="activeRow === row ? 0 : 270"
-        >
+        <fa-icon class="block arrow" [icon]="['fas', 'chevron-down']" [rotate]="activeRow === row ? 0 : 270">
         </fa-icon>
         <div class="block name">{{ contact.name | titlecase }}</div>
         <div class="block address">
@@ -40,9 +31,7 @@
         <p>
           Phones:
           <fa-icon [icon]="['fas', 'phone']"></fa-icon>
-          <span *ngFor="let phone of contact.phones"
-            >{{ phone.prefix }}{{ phone.phone }}</span
-          >
+          <span *ngFor="let phone of contact.phones">{{ phone.prefix }}{{ phone.phone }}</span>
         </p>
         <p>
           Email:

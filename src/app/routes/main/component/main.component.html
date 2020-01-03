@@ -1,5 +1,5 @@
 <div class="main-wrapper">
-  <app-main-header (onToogleSidebar)="toogleSidebar()"></app-main-header>
+  <app-main-header (burgerClicked)="toogleSidebar()"></app-main-header>
   <div class="content-wrapper">
     <app-main-sidebar [show]="showSidebar"></app-main-sidebar>
     <div class="routes-wrapper" infiniteScroll [infiniteScrollThrottle]="500" (scrolled)="getContacts()"

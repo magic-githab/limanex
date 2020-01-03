@@ -17,9 +17,7 @@
 
     overflow: hidden;
 
-    app-sidebar {
-      z-index: 1;
-    }
+    position: relative;
 
     .routes-wrapper {
       flex: 1;

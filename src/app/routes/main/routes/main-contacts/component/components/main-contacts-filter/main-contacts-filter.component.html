@@ -1,7 +1,7 @@
   <form [formGroup]="filterForm">
     <label>
       <fa-icon [icon]="['fas', 'filter']"></fa-icon>
-      фильтр
+      {{ "FILTER.TITLE" | translate }}
     </label>
     <div class="input-wrapper">
       <button (click)="onClickHandler()">

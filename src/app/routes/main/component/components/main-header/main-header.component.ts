@@ -6,13 +6,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./main-header.component.scss']
 })
 export class MainHeaderComponent implements OnInit {
-  // tslint:disable-next-line: no-output-on-prefix
-  @Output() onToogleSidebar = new EventEmitter();
+  @Output() burgerClicked = new EventEmitter();
 
   constructor() {}
 
-  toogleSidebar(): void {
-    this.onToogleSidebar.emit();
+  onBurgerClick(): void {
+    this.burgerClicked.emit();
   }
 
   ngOnInit() {}
