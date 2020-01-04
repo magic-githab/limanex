@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   isShowSidebar = () =>
     (this.showSidebar = window.innerWidth > 990 ? true : false);
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize = () => this.isShowSidebar();
 
   toogleSidebar = () => (this.showSidebar = !this.showSidebar);
