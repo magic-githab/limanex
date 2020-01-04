@@ -1,8 +1,34 @@
 .main-contacts {
-  padding: 15px;
-
   app-main-contacts-filter {
     display: block;
     margin-bottom: 30px;
+  }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 767.98px) {
+  .main-contacts {
+    padding: 5px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .main-contacts {
+    padding: 10px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .main-contacts {
+    padding: 15px;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .main-contacts {
+    padding: 15px;
   }
 }

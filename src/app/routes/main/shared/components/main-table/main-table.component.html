@@ -1,10 +1,12 @@
 <div class="table">
   <div class="table-header">
     <div class="row">
-      <div class="block arrow"></div>
-      <div class="block name">Name</div>
-      <div class="block address">Address</div>
-      <div class="block roles">Roles</div>
+      <div class="preview">
+        <div class="block arrow"></div>
+        <div class="block name">Name</div>
+        <div class="block address">Address</div>
+        <div class="block roles">Roles</div>
+      </div>
     </div>
   </div>
 
@@ -12,8 +14,8 @@
     <div *ngFor="
         let contact of contacts$ | async;
         let row = index;
-      " (click)="onClick(row)" [ngClass]="{ row: true, active: activeRow === row }">
-      <div class="preview">
+      " [ngClass]="{ row: true, active: activeRow === row }">
+      <div class="preview" (click)="onClick(row)">
         <fa-icon class="block arrow" [icon]="['fas', 'chevron-down']" [rotate]="activeRow === row ? 0 : 270">
         </fa-icon>
         <div class="block name">{{ contact.name | titlecase }}</div>
@@ -22,32 +24,50 @@
           <p class="street">{{ contact.address.street | titlecase }}</p>
         </div>
         <div class="block roles">
-          <span *ngFor="let role of contact.roles | keyvalue">{{
+          <div *ngFor="let role of contact.roles | keyvalue">{{
             role.key | titlecase
-          }}</span>
+          }}</div>
         </div>
       </div>
       <div class="more" *ngIf="activeRow === row">
-        <p>
-          Phones:
-          <fa-icon [icon]="['fas', 'phone']"></fa-icon>
-          <span *ngFor="let phone of contact.phones">{{ phone.prefix }}{{ phone.phone }}</span>
-        </p>
-        <p>
-          Email:
-          <fa-icon [icon]="['far', 'envelope']"></fa-icon>
-          <span>{{ contact.email }}</span>
-        </p>
-        <p>
-          Uniq Code: <span>{{ contact.uniqueCode }}</span>
-        </p>
-        <p>
-          Added by: <span>{{ contact.insertBy.name }}</span>
-        </p>
+        <div>
+          <p>Contact Info:</p>
+          <div>
+            <p class="phone">
+              <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+              <span *ngFor="let phone of contact.phones">{{ phone.prefix }}{{ phone.phone }}</span>
+            </p>
+            <p>
+              <fa-icon [icon]="['far', 'envelope']"></fa-icon>
+              <span>{{ contact.email }}</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <p>Address:</p>
+          <div>
+            <p class="city">{{ contact.address.cityName | titlecase }}</p>
+            <p class="street">{{ contact.address.street | titlecase }}</p>
+          </div>
+        </div>
+        <div>
+          <p>ID:</p>
+          <div>
+            <p class="id"><span>{{ contact.uniqueCode }}</span></p>
+          </div>
+        </div>
+        <div>
+          <p>Added by:</p>
+          <div>
+            <p>{{ contact.insertBy.name }} | {{ contact.timestamp.date | date:'short'}}</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row loading">
-      <p class="block">{{ noData ? 'No More Data' : 'Loading...' }}</p>
+    <div class="row">
+      <div class="preview">
+        <p class="block">{{ noData ? 'No More Data' : 'Loading...' }}</p>
+      </div>
     </div>
   </div>
 </div>
