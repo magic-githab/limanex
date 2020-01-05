@@ -21,8 +21,5 @@ export class MainTableComponent implements OnInit {
 
   ngOnInit() {
     this.contacts$ = this.contactsService.getContacts();
-    this.contacts$.subscribe(res => {
-      this.noData = res.length < this.contactsService.limit;
-    });
   }
 }
