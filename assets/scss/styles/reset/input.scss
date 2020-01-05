@@ -1,4 +1,11 @@
 input {
   border: none;
   outline: none;
+
+  &[type=text] {
+    /* Remove First */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 }
