@@ -51,7 +51,6 @@
   }
 
   .table-body .row {
-    cursor: pointer;
 
     border-top: 1px solid #F7F7F7;
 
@@ -61,6 +60,7 @@
     }
 
     .preview {
+      cursor: pointer;
       .roles {
         display: flex;
         flex-wrap: wrap;
