@@ -203,6 +203,10 @@
         flex: 2;
       }
     }
+
+    .more .address {
+      display: none !important;
+    }
   }
 
   .table-body .row .more>div>p {
@@ -232,6 +236,10 @@
       &.roles {
         flex: 2;
       }
+    }
+
+    .more .address {
+      display: none !important;
     }
   }
 
@@ -263,6 +271,10 @@
       &.roles {
         flex: 2;
       }
+    }
+
+    .more .address {
+      display: none !important;
     }
   }
 

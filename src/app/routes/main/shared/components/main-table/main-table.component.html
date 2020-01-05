@@ -43,7 +43,7 @@
             </p>
           </div>
         </div>
-        <div>
+        <div class="address">
           <p>Address:</p>
           <div>
             <p class="city">{{ contact.address.cityName | titlecase }}</p>
@@ -72,5 +72,4 @@
       </div>
     </div>
   </div>
-  <fa-icon *ngIf="isLoading" [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
 </div>

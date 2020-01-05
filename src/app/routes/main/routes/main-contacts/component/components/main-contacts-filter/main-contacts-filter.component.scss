@@ -20,8 +20,7 @@
         width: 100%;
         font-size: 14px;
         padding: 7px 0px 7px 12px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-radius: 5px 0px 0px 5px;
         border: 1px solid #DDDDDD;
       }
 
@@ -46,11 +45,8 @@
       background-color: #E6E6E6;
       padding: 0px 8px;
 
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      border: 1px solid #DDDDDD;
+      border-radius: 0px 5px 5px 0px;
       border-left: none;
-
 
       fa-icon {
         font-size: 14px;
