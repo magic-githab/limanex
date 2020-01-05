@@ -12,7 +12,7 @@ export class MainContactsFilterComponent implements OnInit {
   @ViewChild('filterInput', { static: false }) filterInput: ElementRef;
 
   public filterForm: FormGroup;
-  public isSpinner: boolean;
+  public isLoading: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,7 +20,7 @@ export class MainContactsFilterComponent implements OnInit {
   ) {}
 
   public showIcon = () =>
-    this.isSpinner
+    this.isLoading
       ? 'spinner'
       : this.filterForm.get('filter').value
       ? 'times-circle'
@@ -35,7 +35,7 @@ export class MainContactsFilterComponent implements OnInit {
   }
 
   public onFilter = (val?) => {
-    this.isSpinner = true;
+    this.isLoading = true;
     this.contactsService.getContacts({
       qry: val || '',
       isFilter: true
@@ -52,6 +52,6 @@ export class MainContactsFilterComponent implements OnInit {
       .valueChanges.pipe(debounceTime(300))
       .subscribe(val => this.onFilter(val));
 
-    this.contactsService.contacts.subscribe(() => (this.isSpinner = false));
+    this.contactsService.contacts.subscribe(() => (this.isLoading = false));
   }
 }

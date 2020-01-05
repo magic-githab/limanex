@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ContactsService } from '../services/contacts/contacts.service';
 @Component({
   selector: 'app-main-root',
   templateUrl: './main.component.html',
@@ -8,7 +7,7 @@ import { ContactsService } from '../services/contacts/contacts.service';
 export class MainComponent implements OnInit {
   public showSidebar = true;
 
-  constructor(private contactsService: ContactsService) {}
+  constructor() {}
   isShowSidebar = () =>
     (this.showSidebar = window.innerWidth > 990 ? true : false);
 
@@ -16,8 +15,6 @@ export class MainComponent implements OnInit {
   onResize = () => this.isShowSidebar();
 
   toogleSidebar = () => (this.showSidebar = !this.showSidebar);
-
-  getContacts = () => this.contactsService.getContacts();
 
   ngOnInit() {
     this.isShowSidebar();

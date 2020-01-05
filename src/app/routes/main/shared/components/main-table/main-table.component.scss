@@ -16,7 +16,7 @@
 
     .preview {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
 
       .block {
         padding: 12px 7px 9.5px;
@@ -28,6 +28,15 @@
 
     &:nth-child(2n) .preview {
       background-color: #F7F7F7;
+    }
+
+    &:last-child .preview {
+      background-color: #fff;
+      color: #55595C;
+
+      .block {
+        padding: 15px 10px;
+      }
     }
 
 
@@ -42,6 +51,8 @@
   }
 
   .table-body .row {
+    cursor: pointer;
+
     border-top: 1px solid #F7F7F7;
 
     .name {

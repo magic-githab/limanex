@@ -2,7 +2,7 @@
     <div class="input-wrapper">
       <input #filterInput type="text" formControlName="filter" placeholder="Name, email or phone number" />
       <div class="icon-wrapper">
-        <fa-icon [icon]="['fas', showIcon()]" [spin]="isSpinner" (click)="clearInput()"></fa-icon>
+        <fa-icon [icon]="['fas', showIcon()]" [spin]="isLoading" (click)="clearInput()"></fa-icon>
       </div>
     </div>
     <button>

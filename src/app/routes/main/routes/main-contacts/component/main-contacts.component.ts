@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactsService } from '@app/routes/main/services/contacts/contacts.service';
 
 @Component({
   selector: 'app-main-contacts-root',
@@ -6,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-contacts.component.scss']
 })
 export class MainContactsComponent implements OnInit {
-  constructor() {}
+  public isLoading: boolean;
 
-  ngOnInit() {}
+  constructor(private contactsService: ContactsService) {}
+
+  getContacts = () => {
+    this.isLoading = true;
+    this.contactsService.getContacts();
+  };
+
+  ngOnInit() {
+    this.contactsService.contacts.subscribe(() => (this.isLoading = false));
+  }
 }

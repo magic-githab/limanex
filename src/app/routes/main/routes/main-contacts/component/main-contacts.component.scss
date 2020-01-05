@@ -1,7 +1,18 @@
 .main-contacts {
+  height: 100%;
+  overflow: auto;
+
   app-main-contacts-filter {
     display: block;
     margin-bottom: 15px;
+  }
+
+  .icon-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 20px;
+    color: #55595C;
   }
 }
 
