@@ -1,17 +1,11 @@
   <form [formGroup]="filterForm">
-    <label>
-      <fa-icon [icon]="['fas', 'filter']"></fa-icon>
-      {{ "FILTER.TITLE" | translate }}
-    </label>
-    <div class="filter-wrapper">
-      <div class="input-wrapper">
-        <input #filterInput type="text" formControlName="filter" placeholder="Name, email or phone number" />
-        <div class="icon-wrapper">
-          <fa-icon [icon]="['fas', showIcon()]" [spin]="isSpinner" (click)="clearInput()"></fa-icon>
-        </div>
+    <div class="input-wrapper">
+      <input #filterInput type="text" formControlName="filter" placeholder="Name, email or phone number" />
+      <div class="icon-wrapper">
+        <fa-icon [icon]="['fas', showIcon()]" [spin]="isSpinner" (click)="clearInput()"></fa-icon>
       </div>
-      <button>
-        <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
-      </button>
     </div>
+    <button>
+      <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
+    </button>
   </form>

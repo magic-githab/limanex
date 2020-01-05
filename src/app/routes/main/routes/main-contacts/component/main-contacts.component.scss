@@ -1,14 +1,14 @@
 .main-contacts {
   app-main-contacts-filter {
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
 }
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 767.98px) {
   .main-contacts {
-    padding: 5px;
+    padding: 10px 8px;
   }
 }
 
