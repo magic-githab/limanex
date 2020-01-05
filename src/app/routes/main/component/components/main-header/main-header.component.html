@@ -1,4 +1,6 @@
 <header>
-  <fa-icon [icon]="['fas', 'bars']" (click)="onBurgerClick()"></fa-icon>
+  <div class="icon-wrapper" (click)="onBurgerClick()">
+    <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+  </div>
   <h1>{{ 'HEADER.TITLE' | translate }}</h1>
 </header>
