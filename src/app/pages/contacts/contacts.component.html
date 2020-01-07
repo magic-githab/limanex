@@ -1,0 +1,7 @@
+<div class="contacts" infiniteScroll [infiniteScrollThrottle]="500" (scrolled)="getContacts()" [scrollWindow]="false">
+  <app-contacts-filter></app-contacts-filter>
+  <app-contacts-table></app-contacts-table>
+  <div class="icon-wrapper" *ngIf="isLoading">
+    <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
+  </div>
+</div>

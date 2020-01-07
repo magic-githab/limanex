@@ -1,0 +1,285 @@
+.table {
+  width: 100%;
+
+  background-color: white;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+
+  padding: 0px 8px;
+
+  .row {
+
+    color: #7b7e80;
+
+    .preview {
+      display: flex;
+      justify-content: space-between;
+
+      .block {
+        padding: 12px 7px 9.5px;
+        line-height: 15px;
+
+        overflow: hidden;
+      }
+    }
+
+    &:nth-child(2n) .preview {
+      background-color: #F7F7F7;
+    }
+
+    &:last-child .preview {
+      background-color: #fff;
+      color: #55595C;
+
+      .block {
+        padding: 15px 10px;
+      }
+    }
+
+
+    fa-icon {
+      color: #7b7e80;
+    }
+  }
+
+  .table-header .row .preview div {
+    font-weight: bold;
+    color: #55595C
+  }
+
+  .table-body .row {
+
+    border-top: 1px solid #F7F7F7;
+
+    .name {
+      color: #1C7CD5;
+      margin-bottom: 2.5px;
+    }
+
+    .preview {
+      cursor: pointer;
+
+      .roles {
+        display: flex;
+        flex-wrap: wrap;
+
+        align-items: center;
+
+        div {
+          font-size: 10px;
+          padding: 3px 8px;
+          border-radius: 5px;
+          background-color: #818A91;
+          color: white;
+          margin-right: 5px;
+          margin-bottom: 2.5px;
+
+          font-weight: bold;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .more {
+      padding: 15px;
+      border-top: 1px solid #F7F7F7;
+
+      line-height: 15px;
+
+      >div {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        >p {
+          font-weight: bold;
+        }
+
+        >div {
+          flex: 1;
+          overflow: hidden;
+
+          >p {
+            display: flex;
+
+            fa-icon {
+              margin-right: 5px;
+            }
+
+            &.phone span {
+
+              &:nth-child(n + 3) {
+                display: inline-flex;
+                align-items: center;
+
+                &:before {
+                  content: '';
+                  display: inline-block;
+                  width: 5px;
+                  height: 5px;
+                  border-radius: 50%;
+                  background-color: #7b7e80;
+                  margin: 0px 5px;
+                }
+              }
+            }
+
+            &.id span {
+              display: inline-block;
+              background-color: #fdd;
+              padding: 3px;
+              border-radius: 5px;
+              color: #d55;
+              font-weight: bold;
+            }
+
+            &:nth-child(n + 2) {
+              margin-top: 2.5px;
+            }
+
+          }
+        }
+      }
+    }
+
+  }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 767.98px) {
+  .row {
+    font-size: 13px;
+
+    .block {
+      &.arrow {
+        flex: none;
+        width: 20px;
+      }
+
+      &.name {
+        flex: 1;
+      }
+
+      &.address {
+        display: none;
+      }
+
+      &.roles {
+        flex: 2;
+      }
+    }
+  }
+
+  .table-body .row .more>div>p {
+    width: 65px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .row {
+    font-size: 13px;
+
+    .block {
+      &.arrow {
+        flex: none;
+        width: 20px;
+      }
+
+      &.name {
+        flex: 1;
+      }
+
+      &.address {
+        flex: 1;
+      }
+
+      &.roles {
+        flex: 2;
+      }
+    }
+
+    .more .address {
+      display: none !important;
+    }
+  }
+
+  .table-body .row .more>div>p {
+    width: 90px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .row {
+    font-size: 13px;
+
+    .block {
+      &.arrow {
+        flex: none;
+        width: 20px;
+      }
+
+      &.name {
+        flex: 1;
+      }
+
+      &.address {
+        flex: 1;
+      }
+
+      &.roles {
+        flex: 2;
+      }
+    }
+
+    .more .address {
+      display: none !important;
+    }
+  }
+
+  .table-body .row .more>div>p {
+    width: 90px;
+
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .row {
+    font-size: 13px;
+
+    .block {
+      &.arrow {
+        flex: none;
+        width: 20px;
+      }
+
+      &.name {
+        flex: 1;
+      }
+
+      &.address {
+        flex: 1;
+      }
+
+      &.roles {
+        flex: 2;
+      }
+    }
+
+    .more .address {
+      display: none !important;
+    }
+  }
+
+  .table-body .row .more>div>p {
+    width: 90px;
+  }
+}
