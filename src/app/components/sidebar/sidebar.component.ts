@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.items.push({
-      name: 'контакты',
+      name: 'contacts',
       route: './',
       icon: 'user'
     });

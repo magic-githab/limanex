@@ -1,6 +1,7 @@
   <form [formGroup]="filterForm">
     <div class="input-wrapper">
-      <input #filterInput type="text" formControlName="filter" placeholder="Name, email or phone number" />
+      <input #filterInput type="text" formControlName="filter"
+        [placeholder]="'contacts.baseFilter.placeholder' | translate" />
       <div class="icon-wrapper">
         <fa-icon [icon]="['fas', showIcon()]" [spin]="isLoading" (click)="clearInput()"></fa-icon>
       </div>

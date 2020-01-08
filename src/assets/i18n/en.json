@@ -1,8 +1,54 @@
 {
-  "HEADER": {
-    "TITLE": "Uman Express system"
+  "langConf": {
+    "name": "English",
+    "code": "eng",
+    "dir": "ltr"
   },
-  "FILTER": {
-    "TITLE": "filter"
+  "common": {
+    "next": "Next",
+    "back": "Back"
+  },
+  "auth": {
+    "login": "Login",
+    "username": "Username",
+    "pass": "Password",
+    "switchRole": "Switch role"
+  },
+  "header": {
+    "title": "Uman Express"
+  },
+  "contacts": {
+    "baseFilter": {
+      "placeholder": "Search contacts by ID, Name, email or phone number"
+    },
+    "table": {
+      "name": "Name",
+      "address": "Address",
+      "roles": "Roles",
+      "info": "Contact Info",
+      "id": "ID",
+      "added": "Added by",
+      "entires": "Showing entries:"
+    }
+  },
+  "dateTime": {
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "now": "Now",
+    "fewDaysAgo": "Few days ago",
+    "nextWeek": "Next week",
+    "number2daysShort": {
+      "1": "Sun",
+      "2": "Mon",
+      "3": "Tue"
+    },
+    "number2month": {
+      "1": "January",
+      "2": "February"
+    }
+  },
+  "generalErrors": {
+    "no results": "No results",
+    "permissionDenied": "You do not have permission to access this area"
   }
 }
