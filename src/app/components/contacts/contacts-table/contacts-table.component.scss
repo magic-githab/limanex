@@ -151,6 +151,14 @@
   }
 }
 
+.icon-wrapper {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+  color: #55595C;
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 767.98px) {
   .row {

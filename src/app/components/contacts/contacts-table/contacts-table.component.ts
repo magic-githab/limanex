@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactsService } from '@app/services/contacts.service';
 import { Contact } from '@app/models';
@@ -9,6 +9,8 @@ import { Contact } from '@app/models';
   styleUrls: ['./contacts-table.component.scss']
 })
 export class ContactsTableComponent implements OnInit {
+  @Input() loading: boolean;
+
   public contacts$: Observable<Contact[]>;
 
   public activeRow: number;

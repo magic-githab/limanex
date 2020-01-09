@@ -13,6 +13,7 @@ import {
   HeaderComponent,
   SidebarComponent
 } from '@app/components';
+
 import { ContactsComponent } from '@app/pages/contacts/contacts.component';
 
 @NgModule({
