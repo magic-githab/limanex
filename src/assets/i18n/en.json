@@ -29,6 +29,17 @@
       "id": "ID",
       "added": "Added by",
       "entires": "Showing entries:"
+    },
+    "create": {
+      "title": "Create Contact",
+      "name": "Name",
+      "firstNamePlaceholder": "First Name",
+      "lastNamePlaceholder": "Last Name",
+      "fullNamePlaceholder": "Heb Full Name",
+      "phone": "Phone",
+      "email": "Email",
+      "cancel": "Close",
+      "submit": "Create"
     }
   },
   "dateTime": {

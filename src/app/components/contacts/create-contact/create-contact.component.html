@@ -2,38 +2,25 @@
   <div class="modal-wrapper">
     <header>
       <h2>
-        Create Contact
+        {{ 'contacts.create.title' | translate }}
       </h2>
-      <fa-icon
-        class="close"
-        [icon]="['fas', 'times']"
-        (click)="createContact.close()"
-      ></fa-icon>
+      <fa-icon class="close" [icon]="['fas', 'times']" (click)="createContact.close()"></fa-icon>
     </header>
 
     <form [formGroup]="createContactForm" (ngSubmit)="onSubmit()">
       <div class="wrapper">
         <div class="input-wrapper">
-          <input
-            type="text"
-            placeholder="First Name"
-            formControlName="firstName"
-          />
-          <label for="">Name</label>
+          <input type="text" [placeholder]="'contacts.create.firstNamePlaceholder' | translate"
+            formControlName="firstName" />
+          <label for="">{{ 'contacts.create.name' | translate }}</label>
         </div>
         <div class="input-wrapper">
-          <input
-            type="text"
-            placeholder="First Name"
-            formControlName="firstName"
-          />
+          <input type="text" [placeholder]="'contacts.create.lastNamePlaceholder' | translate"
+            formControlName="lastName" />
         </div>
         <div class="input-wrapper">
-          <input
-            type="text"
-            placeholder="Heb Full Name"
-            formControlName="fullName"
-          />
+          <input type="text" [placeholder]="'contacts.create.fullNamePlaceholder' | translate"
+            formControlName="fullName" />
         </div>
         <div class="input-wrapper">
           <div class="phone-input-wrapper">
@@ -44,7 +31,7 @@
             </select>
             <input type="text" formControlName="phone" />
           </div>
-          <label for="">Phone</label>
+          <label for="">{{ 'contacts.create.phone' | translate }}</label>
         </div>
 
         <div class="radio-buttons">
@@ -55,22 +42,19 @@
                 <fa-icon [icon]="['fas', 'check']"></fa-icon>
               </span>
             </label>
-            <fa-icon
-              [class]="messanger.icon"
-              [icon]="['fab', messanger.icon]"
-            ></fa-icon>
+            <fa-icon [class]="messanger.icon" [icon]="['fab', messanger.icon]"></fa-icon>
           </div>
         </div>
 
         <div class="input-wrapper">
           <input type="text" formControlName="email" />
-          <label for="">Email</label>
+          <label for="">{{ 'contacts.create.email' | translate }}</label>
         </div>
       </div>
 
       <div class="buttons">
-        <button type="button" (click)="createContact.close()">Close</button>
-        <button>Create</button>
+        <button type="button" (click)="createContact.close()">{{ 'contacts.create.cancel' | translate }}</button>
+        <button>{{ 'contacts.create.submit' | translate }}</button>
       </div>
     </form>
   </div>
