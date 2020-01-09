@@ -1,4 +1,10 @@
 <div class="contacts" infiniteScroll [infiniteScrollThrottle]="500" (scrolled)="getContacts()" [scrollWindow]="false">
   <app-contacts-filter></app-contacts-filter>
   <app-contacts-table [loading]="isLoading"></app-contacts-table>
+
+  <div class="icon-wrapper" (click)="openCreateContact()">
+    <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+  </div>
+
+  <app-create-contact></app-create-contact>
 </div>

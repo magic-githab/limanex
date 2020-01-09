@@ -34,13 +34,13 @@ export class ContactsFilterComponent implements OnInit {
     }
   }
 
-  public onFilter = (val?) => {
+  public onFilter(val?) {
     this.isLoading = true;
     this.contactsService.getContacts({
       qry: val || '',
       isFilter: true
     });
-  };
+  }
 
   ngOnInit() {
     this.filterForm = this.formBuilder.group({

@@ -1,0 +1,77 @@
+<ngx-smart-modal [closable]="false" #createContact identifier="createContact">
+  <div class="modal-wrapper">
+    <header>
+      <h2>
+        Create Contact
+      </h2>
+      <fa-icon
+        class="close"
+        [icon]="['fas', 'times']"
+        (click)="createContact.close()"
+      ></fa-icon>
+    </header>
+
+    <form [formGroup]="createContactForm" (ngSubmit)="onSubmit()">
+      <div class="wrapper">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            placeholder="First Name"
+            formControlName="firstName"
+          />
+          <label for="">Name</label>
+        </div>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            placeholder="First Name"
+            formControlName="firstName"
+          />
+        </div>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            placeholder="Heb Full Name"
+            formControlName="fullName"
+          />
+        </div>
+        <div class="input-wrapper">
+          <div class="phone-input-wrapper">
+            <select formControlName="phoneCode">
+              <option *ngFor="let code of codes" [value]="code">{{
+                code
+              }}</option>
+            </select>
+            <input type="text" formControlName="phone" />
+          </div>
+          <label for="">Phone</label>
+        </div>
+
+        <div class="radio-buttons">
+          <div class="radio" *ngFor="let messanger of messangers">
+            <label>
+              <input type="radio" [value]="messanger" name="messanger" />
+              <span>
+                <fa-icon [icon]="['fas', 'check']"></fa-icon>
+              </span>
+            </label>
+            <fa-icon
+              [class]="messanger.icon"
+              [icon]="['fab', messanger.icon]"
+            ></fa-icon>
+          </div>
+        </div>
+
+        <div class="input-wrapper">
+          <input type="text" formControlName="email" />
+          <label for="">Email</label>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" (click)="createContact.close()">Close</button>
+        <button>Create</button>
+      </div>
+    </form>
+  </div>
+</ngx-smart-modal>

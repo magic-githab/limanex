@@ -10,6 +10,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {
   ContactsTableComponent,
   ContactsFilterComponent,
+  CreateContactComponent,
   HeaderComponent,
   SidebarComponent
 } from '@app/components';
@@ -23,7 +24,8 @@ import { ContactsComponent } from '@app/pages/contacts/contacts.component';
     SidebarComponent,
     ContactsComponent,
     ContactsTableComponent,
-    ContactsFilterComponent
+    ContactsFilterComponent,
+    CreateContactComponent
   ],
   imports: [SharedModule, MainRoutingModule, InfiniteScrollModule],
   providers: [ContactsService]

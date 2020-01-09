@@ -1,0 +1,178 @@
+::ng-deep .pack-modal-custom {
+  min-width: 800px !important;
+  max-width: none !important;
+  background-color: black !important;
+}
+
+ngx-smart-modal {
+  width: 800px;
+  .modal-wrapper {
+    padding: 30px 0px 10px;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0px 15px;
+      margin-bottom: 20px;
+
+      h2 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #373a3c;
+      }
+      fa-icon {
+        color: #818a91;
+        font-size: 25px;
+
+        cursor: pointer;
+      }
+    }
+
+    form {
+      background-color: white;
+
+      .wrapper {
+        background-color: #f7f7f7;
+        padding: 16px 11px 24px;
+
+        .input-wrapper {
+          margin-bottom: 17px;
+          display: flex;
+          flex-direction: column-reverse;
+
+          label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: hsl(206, 7%, 54%);
+          }
+
+          input {
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+
+            &.ng-touched.ng-invalid {
+              border-color: #ed5565;
+              & + label {
+                color: #ed5565;
+              }
+            }
+          }
+
+          input[type='text'] {
+            width: 100%;
+            padding: 10px 5px 10px 15px;
+            background-color: white;
+            font-size: 14px;
+            color: #818a91;
+          }
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
+
+        .phone-input-wrapper {
+          display: flex;
+
+          select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 10px 15px;
+            border: 1px solid #dddddd;
+            border-right: none;
+            background-color: white;
+            border-radius: 5px 0px 0px 5px;
+            color: #818a91;
+            font-size: 14px;
+          }
+
+          input {
+            border-radius: 0px 5px 5px 0px;
+          }
+        }
+
+        .radio-buttons {
+          display: flex;
+          margin-top: -5px;
+          margin-bottom: 20px;
+
+          .radio {
+            display: flex;
+            margin-right: 20px;
+
+            label {
+              input[type='radio'] {
+                display: none;
+                &:checked + span fa-icon {
+                  display: block;
+                }
+              }
+              span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                border: 1px solid #818a91;
+                fa-icon {
+                  display: none;
+                  font-size: 7px;
+                  color: #55595c;
+                }
+              }
+            }
+
+            > fa-icon {
+              margin-left: 5px;
+              &.telegram {
+                color: #2995d0;
+              }
+
+              &.whatsapp {
+                color: #22cd5b;
+              }
+
+              &.viber {
+                color: #5b52a2;
+              }
+            }
+          }
+        }
+      }
+
+      .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        margin-top: 14px;
+
+        button {
+          padding: 10px 18px;
+          border: 1px solid #818a91;
+          border-radius: 5px;
+          margin-right: 10px;
+
+          cursor: pointer;
+
+          &:first-child {
+            background-color: #ffffff;
+          }
+
+          &:last-child {
+            background-color: #7d878c;
+            &:hover {
+              background-color: #37474f;
+            }
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
