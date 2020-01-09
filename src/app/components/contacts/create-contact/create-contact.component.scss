@@ -6,6 +6,7 @@
 
 ngx-smart-modal {
   width: 800px;
+
   .modal-wrapper {
     padding: 30px 0px 10px;
 
@@ -22,6 +23,7 @@ ngx-smart-modal {
         font-weight: bold;
         color: #373a3c;
       }
+
       fa-icon {
         color: #818a91;
         font-size: 25px;
@@ -55,7 +57,8 @@ ngx-smart-modal {
 
             &.ng-touched.ng-invalid {
               border-color: #ed5565;
-              & + label {
+
+              &+label {
                 color: #ed5565;
               }
             }
@@ -107,10 +110,12 @@ ngx-smart-modal {
             label {
               input[type='radio'] {
                 display: none;
-                &:checked + span fa-icon {
+
+                &:checked+span fa-icon {
                   display: block;
                 }
               }
+
               span {
                 display: flex;
                 align-items: center;
@@ -118,7 +123,9 @@ ngx-smart-modal {
                 width: 15px;
                 height: 15px;
                 border-radius: 50%;
-                border: 1px solid #818a91;
+                border: 1px solid #dddddd;
+                background-color: white;
+
                 fa-icon {
                   display: none;
                   font-size: 7px;
@@ -127,8 +134,9 @@ ngx-smart-modal {
               }
             }
 
-            > fa-icon {
+            >fa-icon {
               margin-left: 5px;
+
               &.telegram {
                 color: #2995d0;
               }
@@ -166,9 +174,11 @@ ngx-smart-modal {
 
           &:last-child {
             background-color: #7d878c;
+
             &:hover {
               background-color: #37474f;
             }
+
             color: white;
           }
         }
