@@ -55,7 +55,7 @@ ngx-smart-modal {
             border: 1px solid #dddddd;
             border-radius: 5px;
 
-            &.ng-touched.ng-invalid {
+            &.ng-dirty.ng-invalid {
               border-color: #ed5565;
 
               &+label {
@@ -80,21 +80,13 @@ ngx-smart-modal {
         .phone-input-wrapper {
           display: flex;
 
-          select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            padding: 10px 15px;
-            border: 1px solid #dddddd;
-            border-right: none;
-            background-color: white;
-            border-radius: 5px 0px 0px 5px;
-            color: #818a91;
-            font-size: 14px;
+          ng-autocomplete {
+            width: 125px;
           }
 
           input {
             border-radius: 0px 5px 5px 0px;
+            border-left: none;
           }
         }
 
@@ -173,10 +165,10 @@ ngx-smart-modal {
           }
 
           &:last-child {
-            background-color: #7d878c;
+            background-color: #37474f;
 
-            &:hover {
-              background-color: #37474f;
+            &.disabled {
+              background-color: #7d878c;
             }
 
             color: white;

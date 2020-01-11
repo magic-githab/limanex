@@ -5,9 +5,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class IconsService {
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas, far, fab);

@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { debounceTime } from 'rxjs/operators';
-import { ContactsService } from '@app/services/contacts.service';
+import { ContactsService } from '@services/.';
 
 @Component({
   selector: 'app-contacts-filter',
@@ -36,10 +36,12 @@ export class ContactsFilterComponent implements OnInit {
 
   public onFilter(val?) {
     this.isLoading = true;
-    this.contactsService.getContacts({
-      qry: val || '',
-      isFilter: true
-    });
+    this.contactsService
+      .getContacts({
+        qry: val || '',
+        isFilter: true
+      })
+      .subscribe(() => (this.isLoading = false));
   }
 
   ngOnInit() {
@@ -51,7 +53,5 @@ export class ContactsFilterComponent implements OnInit {
       .get('filter')
       .valueChanges.pipe(debounceTime(300))
       .subscribe(val => this.onFilter(val));
-
-    this.contactsService.contacts.subscribe(() => (this.isLoading = false));
   }
 }

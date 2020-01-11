@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ContactsService } from '@app/services/contacts.service';
-import { Contact } from '@app/models';
+import { ContactsService } from '@services/.';
+import { Contact } from '@models/.';
 
 @Component({
   selector: 'app-contacts-table',
@@ -9,7 +9,7 @@ import { Contact } from '@app/models';
   styleUrls: ['./contacts-table.component.scss']
 })
 export class ContactsTableComponent implements OnInit {
-  @Input() loading: boolean;
+  @Input() isLoading: boolean;
 
   public contacts$: Observable<Contact[]>;
 
@@ -22,6 +22,6 @@ export class ContactsTableComponent implements OnInit {
   onClick = row => (this.activeRow = this.activeRow === row ? -1 : row);
 
   ngOnInit() {
-    this.contacts$ = this.contactsService.getContacts();
+    this.contacts$ = this.contactsService.contacts;
   }
 }

@@ -2,7 +2,20 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "src",
-    "outDir": "./dist/out-tsc",
+    "paths": {
+      "@components/*": ["app/components/*"],
+      "@containers/*": ["app/containers/*"],
+      "@models/*": ["app/models/*"],
+      "@modules/*": ["app/modules/*"],
+      "@pages/*": ["app/pages/*"],
+      "@routes/*": ["app/routes/*"],
+      "@services/*": ["app/services/*"],
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"],
+      "@env/*": ["environments/*"],
+      "@src/*": ["*"]
+    },
+    "outDir": "./dist",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -20,11 +33,6 @@
     ],
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "paths": {
-      "@app/*": ["app/*"],
-      "@env/*": ["environments/*"],
-      "@shared/*": ["app/shared/*"]
-    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

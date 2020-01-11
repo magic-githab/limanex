@@ -1,0 +1,16 @@
+ng-autocomplete {
+  .autocomplete-container {
+    box-shadow: none;
+
+    input[type="text"] {
+      border: 1px solid #dddddd;
+      border-radius: 5px 0px 0px 5px;
+      color: #818a91;
+
+    }
+
+    .x {
+      display: none;
+    }
+  }
+}

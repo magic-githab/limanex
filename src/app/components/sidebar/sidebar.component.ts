@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Route } from '@app/models';
+import { Route } from '@models/.';
 
 @Component({
   selector: 'app-sidebar',

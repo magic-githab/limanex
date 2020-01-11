@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContactsComponent } from '@app/pages/contacts/contacts.component';
-import { AdminComponent } from './component/admin.component';
+import { ContactsComponent } from '@pages/.';
+import { AdminComponent } from '@containers/.';
 
 const routes: Routes = [
   {
@@ -20,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainRoutingModule {}
+export class AdminRoutingModule {}

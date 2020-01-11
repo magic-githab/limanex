@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  ContactsService,
+  ModalsService,
+  NotificationsService
+} from '@services/.';
+import { CreateContactResponse } from '@models/.';
 
 @Component({
   selector: 'app-create-contact',
@@ -8,35 +14,77 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateContactComponent implements OnInit {
   public createContactForm: FormGroup;
-  public codes = ['+095', '+073', '+065'];
-  public messangers = [
-    { title: 'Telegram', icon: 'telegram' },
-    { title: 'Viber', icon: 'viber' },
-    { title: 'Whats App', icon: 'whatsapp' }
-  ];
+  public phoneCodes = [];
+  public filteredPhoneCodes = [];
+  public platforms = ['telegram', 'viber', 'whatsapp'];
 
-  constructor(private formBuilder: FormBuilder) {}
+  public isCreateLoading = false;
+  public isPhonesLoading = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private contactsService: ContactsService,
+    private modalsService: ModalsService,
+    private notificationsService: NotificationsService
+  ) {}
+
+  public getPhoneCodes(qry) {
+    this.isPhonesLoading = true;
+    this.contactsService.getPhoneCodes({ qry }).subscribe(res => {
+      this.isPhonesLoading = false;
+      this.phoneCodes = res.items.map(x => `+${x.phonePrefix}`);
+    });
+  }
+
+  public filterPhoneCodes(str) {
+    const newStr = str.includes('+') ? str : `+${str}`;
+    this.filteredPhoneCodes = this.phoneCodes
+      .filter(x => x.includes(newStr))
+      .slice(0, 7);
+  }
 
   public onSubmit() {
     if (this.createContactForm.valid) {
-      console.log('form submitted');
+      const createFormValue = { ...this.createContactForm.value };
+
+      for (const prop in createFormValue) {
+        if (!createFormValue[prop]) {
+          delete createFormValue[prop];
+        }
+      }
+      this.isCreateLoading = true;
+      this.contactsService
+        .createContact(createFormValue)
+        .subscribe((res: CreateContactResponse) => {
+          this.isCreateLoading = false;
+          res.msg.map(msg => this.notificationsService.pushNotification(msg));
+          this.closeModal();
+        });
     } else {
       Object.keys(this.createContactForm.controls).forEach(field => {
         const control = this.createContactForm.get(field);
-        control.markAsTouched({ onlySelf: true });
+        control.markAsDirty({ onlySelf: true });
       });
     }
   }
 
+  public closeModal = () => this.modalsService.closeModal('createContact');
+
   ngOnInit() {
-    this.createContactForm = this.formBuilder.group({
+    this.createContactForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      fullName: [''],
-      phoneCode: [this.codes[0]],
-      phone: [''],
-      email: ['', [Validators.required, Validators.email]],
-      messenger: ['']
+      hebName: [''],
+      phones: this.fb.array([
+        this.fb.group({
+          prefix: [''],
+          phone: [''],
+          platforms: this.fb.array([''])
+        })
+      ]),
+      email: ['', [Validators.required, Validators.email]]
     });
+
+    this.getPhoneCodes('');
   }
 }

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { NgxMaskModule } from 'ngx-mask';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [],
@@ -12,14 +14,18 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     ReactiveFormsModule,
     FontAwesomeModule,
     TranslateModule,
-    NgxSmartModalModule
+    NgxSmartModalModule,
+    NgxMaskModule,
+    ToastrModule
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     TranslateModule,
-    NgxSmartModalModule
+    NgxSmartModalModule,
+    NgxMaskModule,
+    ToastrModule
   ]
 })
 export class SharedModule {}

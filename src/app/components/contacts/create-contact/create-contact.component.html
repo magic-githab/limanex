@@ -4,45 +4,89 @@
       <h2>
         {{ 'contacts.create.title' | translate }}
       </h2>
-      <fa-icon class="close" [icon]="['fas', 'times']" (click)="createContact.close()"></fa-icon>
+      <fa-icon
+        class="close"
+        [icon]="['fas', 'times']"
+        (click)="createContact.close()"
+      ></fa-icon>
     </header>
 
     <form [formGroup]="createContactForm" (ngSubmit)="onSubmit()">
       <div class="wrapper">
         <div class="input-wrapper">
-          <input type="text" [placeholder]="'contacts.create.firstNamePlaceholder' | translate"
-            formControlName="firstName" />
+          <input
+            type="text"
+            [placeholder]="'contacts.create.firstNamePlaceholder' | translate"
+            formControlName="firstName"
+          />
           <label for="">{{ 'contacts.create.name' | translate }}</label>
         </div>
         <div class="input-wrapper">
-          <input type="text" [placeholder]="'contacts.create.lastNamePlaceholder' | translate"
-            formControlName="lastName" />
+          <input
+            type="text"
+            [placeholder]="'contacts.create.lastNamePlaceholder' | translate"
+            formControlName="lastName"
+          />
         </div>
         <div class="input-wrapper">
-          <input type="text" [placeholder]="'contacts.create.fullNamePlaceholder' | translate"
-            formControlName="fullName" />
-        </div>
-        <div class="input-wrapper">
-          <div class="phone-input-wrapper">
-            <select formControlName="phoneCode">
-              <option *ngFor="let code of codes" [value]="code">{{
-                code
-              }}</option>
-            </select>
-            <input type="text" formControlName="phone" />
-          </div>
-          <label for="">{{ 'contacts.create.phone' | translate }}</label>
+          <input
+            type="text"
+            [placeholder]="'contacts.create.fullNamePlaceholder' | translate"
+            formControlName="hebName"
+          />
         </div>
 
-        <div class="radio-buttons">
-          <div class="radio" *ngFor="let messanger of messangers">
-            <label>
-              <input type="radio" [value]="messanger" name="messanger" />
-              <span>
-                <fa-icon [icon]="['fas', 'check']"></fa-icon>
-              </span>
-            </label>
-            <fa-icon [class]="messanger.icon" [icon]="['fab', messanger.icon]"></fa-icon>
+        <div
+          formArrayName="phones"
+          *ngFor="
+            let phoneControl of createContactForm.get('phones').controls;
+            let i = index
+          "
+        >
+          <div [formGroupName]="i">
+            <div class="input-wrapper">
+              <div class="phone-input-wrapper">
+                <ng-autocomplete
+                  #auto
+                  [data]="filteredPhoneCodes"
+                  [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate"
+                  [isLoading]="isPhonesLoading"
+                  (inputChanged)="filterPhoneCodes($event)"
+                  formControlName="prefix"
+                >
+                </ng-autocomplete>
+                <input type="text" formControlName="phone" />
+              </div>
+              <label for="">{{ 'contacts.create.phone' | translate }}</label>
+            </div>
+
+            <div
+              class="radio-buttons"
+              formArrayName="platforms"
+              *ngFor="
+                let platformControl of phoneControl.get('platforms').controls;
+                let j = index
+              "
+            >
+              <div class="radio" *ngFor="let platform of platforms">
+                <label>
+                  <input
+                    type="radio"
+                    name="platforms"
+                    [value]="platform"
+                    [formControlName]="j"
+                  />
+                  <span>
+                    <fa-icon [icon]="['fas', 'check']"></fa-icon>
+                  </span>
+                </label>
+                <fa-icon
+                  [class]="platform"
+                  [icon]="['fab', platform]"
+                ></fa-icon>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -53,9 +97,31 @@
       </div>
 
       <div class="buttons">
-        <button type="button" (click)="createContact.close()">{{ 'contacts.create.cancel' | translate }}</button>
-        <button>{{ 'contacts.create.submit' | translate }}</button>
+        <button type="button" (click)="closeModal()">
+          {{ 'contacts.create.cancel' | translate }}
+        </button>
+        <button
+          [ngClass]="{ disabled: createContactForm.invalid }"
+          [ngSwitch]="isCreateLoading"
+        >
+          <span *ngSwitchCase="false">{{
+            'contacts.create.submit' | translate
+          }}</span>
+          <fa-icon
+            *ngSwitchCase="true"
+            [icon]="['fas', 'spinner']"
+            [spin]="true"
+          ></fa-icon>
+        </button>
       </div>
     </form>
   </div>
 </ngx-smart-modal>
+
+<ng-template #itemTemplate let-item>
+  <a [innerHTML]="item"></a>
+</ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+</ng-template>

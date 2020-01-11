@@ -1,8 +1,11 @@
-import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
-import { ApiService } from '@app/services/api.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Contact, ContactsResponse } from '@app/models';
+import { map } from 'rxjs/operators';
+
+import { environment } from '@env/environment';
+import { Contact, GetContactsResponse } from '@models/.';
+
+import { ApiService } from './api.service';
 
 @Injectable()
 export class ContactsService {
@@ -26,7 +29,7 @@ export class ContactsService {
     return this.contacts$;
   }
 
-  public getContacts(params?): Observable<Contact[]> {
+  public getContacts(params?): Observable<GetContactsResponse> {
     const {
       limit = this.limit,
       beforeID = params ? (params.isFilter ? 0 : this.beforeID) : this.beforeID,
@@ -48,9 +51,8 @@ export class ContactsService {
       keyType
     };
 
-    this.api
-      .post(environment.getContactsUrl, body)
-      .subscribe((res: ContactsResponse) => {
+    return this.api.post(environment.getContactsUrl, body).pipe(
+      map((res: GetContactsResponse) => {
         const newContacts = isFilter
           ? res.items
           : [...this.contactsSubject.getValue(), ...res.items];
@@ -59,8 +61,14 @@ export class ContactsService {
           newContacts.length && newContacts[newContacts.length - 1].id;
 
         this.contactsSubject.next(newContacts);
-      });
-
-    return this.contacts$;
+        return res;
+      })
+    );
   }
+
+  public createContact = (body: Contact) =>
+    this.api.post(environment.createContactUrl, body);
+
+  public getPhoneCodes = body =>
+    this.api.post(environment.getCounriesUrl, { ...body, keyType: 'index' });
 }

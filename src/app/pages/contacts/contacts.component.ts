@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactsService } from '@app/services';
-import { NgxSmartModalService } from 'ngx-smart-modal';
+import { ContactsService, ModalsService } from '@services/.';
 
 @Component({
   selector: 'app-contacts-root',
@@ -12,19 +11,20 @@ export class ContactsComponent implements OnInit {
 
   constructor(
     private contactsService: ContactsService,
-    private ngxSmartModalService: NgxSmartModalService
+    private modalsService: ModalsService
   ) {}
 
   public getContacts = () => {
     this.isLoading = true;
-    this.contactsService.getContacts();
+    this.contactsService.getContacts().subscribe(() => {
+      this.isLoading = false;
+    });
   };
 
-  public openCreateContact = () => {
-    this.ngxSmartModalService.getModal('createContact').open();
-  };
+  public openCreateContact = () =>
+    this.modalsService.openModal('createContact');
 
   ngOnInit() {
-    this.contactsService.contacts.subscribe(() => (this.isLoading = false));
+    this.getContacts();
   }
 }

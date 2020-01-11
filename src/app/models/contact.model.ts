@@ -1,4 +1,6 @@
-export interface ContactsResponse {
+import { Notification } from './notification.model';
+
+export interface GetContactsResponse {
   ok: boolean;
   incomplete_results: boolean;
   total_count: number;
@@ -6,6 +8,12 @@ export interface ContactsResponse {
   dbg: null;
 }
 
+export interface CreateContactResponse {
+  ok: boolean;
+  items: Array<Contact>;
+  msg: Array<Notification>;
+  dbg: null;
+}
 export interface Contact {
   id: number;
   POB: number;
@@ -56,7 +64,7 @@ export interface Address {
 export interface Phone {
   prefix: string;
   phone: string;
-  platforms: Array<any>;
+  platforms: Array<string>;
 }
 
 export interface Dob {

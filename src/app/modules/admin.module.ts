@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
-
-import { MainRoutingModule } from './admin-routing.module';
-import { SharedModule } from '../shared/shared.module';
-
-import { AdminComponent } from '@app/modules/admin/component/admin.component';
-
-import { ContactsService } from '@app/services';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
 import {
   ContactsTableComponent,
   ContactsFilterComponent,
   CreateContactComponent,
   HeaderComponent,
   SidebarComponent
-} from '@app/components';
+} from '@components/.';
 
-import { ContactsComponent } from '@app/pages/contacts/contacts.component';
+import { ContactsComponent } from '@pages/.';
+import { AdminComponent } from '@containers/.';
+import { AdminRoutingModule } from '@routes/.';
+import { ContactsService } from '@services/.';
+
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,12 @@ import { ContactsComponent } from '@app/pages/contacts/contacts.component';
     ContactsFilterComponent,
     CreateContactComponent
   ],
-  imports: [SharedModule, MainRoutingModule, InfiniteScrollModule],
+  imports: [
+    SharedModule,
+    AdminRoutingModule,
+    InfiniteScrollModule,
+    AutocompleteLibModule
+  ],
   providers: [ContactsService]
 })
 export class AdminModule {}
