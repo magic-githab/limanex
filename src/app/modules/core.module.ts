@@ -5,7 +5,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import {
   LanguagesService,
@@ -20,15 +19,12 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
-
 @NgModule({
   declarations: [],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxMaskModule.forRoot(options),
     NgxSmartModalModule.forRoot(),
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
