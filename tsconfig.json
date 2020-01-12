@@ -15,7 +15,7 @@
       "@env/*": ["environments/*"],
       "@src/*": ["*"]
     },
-    "outDir": "./dist",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
