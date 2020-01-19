@@ -5,16 +5,30 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {
+  ButtonComponent,
+  InputComponent,
+  ModalComponent,
+  InputPhoneComponent
+} from '@components/.';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ButtonComponent,
+    InputComponent,
+    ModalComponent,
+    InputPhoneComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     TranslateModule,
     NgxSmartModalModule,
-    ToastrModule
+    ToastrModule,
+    NgbModule
   ],
   exports: [
     CommonModule,
@@ -22,7 +36,12 @@ import { ToastrModule } from 'ngx-toastr';
     FontAwesomeModule,
     TranslateModule,
     NgxSmartModalModule,
-    ToastrModule
+    ToastrModule,
+    NgbModule,
+    ButtonComponent,
+    InputComponent,
+    InputPhoneComponent,
+    ModalComponent
   ]
 })
 export class SharedModule {}

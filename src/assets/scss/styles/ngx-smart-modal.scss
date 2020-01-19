@@ -1,0 +1,29 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: $xs_max) {}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: $sm_min) and (max-width: $sm_max) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: $md_min) and (max-width: $md_max) {
+  .nsm-dialog {
+    width: 600px;
+    max-width: none;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: $lg_min) and (max-width: $lg_max) {
+  .nsm-dialog {
+    width: 600px;
+    max-width: none;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: $xl_min) {
+  .nsm-dialog {
+    width: 600px;
+    max-width: none;
+  }
+}

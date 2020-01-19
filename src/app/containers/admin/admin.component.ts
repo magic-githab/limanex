@@ -1,22 +1,17 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { AppService } from '@services/.';
 @Component({
   selector: 'app-admin-root',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  public showSidebar = true;
+  constructor(public appSerice: AppService) {}
 
-  constructor() {}
-  isShowSidebar = () =>
-    (this.showSidebar = window.innerWidth > 990 ? true : false);
-
-  @HostListener('window:resize')
-  onResize = () => this.isShowSidebar();
-
-  toogleSidebar = () => (this.showSidebar = !this.showSidebar);
+  @HostListener('window:resize', ['$event'])
+  function = () => this.appSerice.onResize();
 
   ngOnInit() {
-    this.isShowSidebar();
+    this.appSerice.onResize();
   }
 }

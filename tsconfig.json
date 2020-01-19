@@ -10,6 +10,7 @@
       "@pages/*": ["app/pages/*"],
       "@routes/*": ["app/routes/*"],
       "@services/*": ["app/services/*"],
+      "@utils/*": ["app/utils/*"],
       "@app/*": ["app/*"],
       "@assets/*": ["assets/*"],
       "@env/*": ["environments/*"],

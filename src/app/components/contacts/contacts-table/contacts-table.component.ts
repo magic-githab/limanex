@@ -1,6 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ContactsService } from '@services/.';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  HostListener
+} from '@angular/core';
+import { Observable, from } from 'rxjs';
 import { Contact } from '@models/.';
 
 @Component({
@@ -9,19 +14,32 @@ import { Contact } from '@models/.';
   styleUrls: ['./contacts-table.component.scss']
 })
 export class ContactsTableComponent implements OnInit {
-  @Input() isLoading: boolean;
+  @ViewChild('ngxTable', { static: false }) table: any;
 
-  public contacts$: Observable<Contact[]>;
+  @Input() contacts$: Observable<Array<Contact>>;
+  @Input() isLoading$: Observable<boolean>;
 
-  public activeRow: number;
-  public showData: number;
-  public noData = false;
+  public rows = [];
 
-  constructor(private contactsService: ContactsService) {}
+  private expandedRow;
+  public showAddress: boolean;
 
-  onClick = row => (this.activeRow = this.activeRow === row ? -1 : row);
+  constructor() {}
+
+  public onActivate({ type, row }) {
+    if (type === 'click') {
+      if (this.expandedRow !== row) {
+        this.table.rowDetail.collapseAllRows();
+        this.expandedRow = row;
+      }
+      this.table.rowDetail.toggleExpandRow(row);
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize = () => (this.showAddress = window.innerWidth > 991.98);
 
   ngOnInit() {
-    this.contacts$ = this.contactsService.contacts;
+    this.onResize();
   }
 }

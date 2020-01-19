@@ -1,0 +1,16 @@
+<ng-container *ngTemplateOutlet="tpl, context: {$implicit: content}">
+</ng-container>
+
+<ng-template #tpl let-param>
+  <ng-container *ngTemplateOutlet="param"></ng-container> World !
+</ng-template>
+
+<ng-template #content let-modal>
+  <ng-content></ng-content>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+<hr>
+
+<pre>{{closeResult}}</pre>

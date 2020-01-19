@@ -8,8 +8,9 @@ describe('ContactsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ContactsTableComponent]
-    }).compileComponents();
+      declarations: [ ContactsTableComponent ]
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {

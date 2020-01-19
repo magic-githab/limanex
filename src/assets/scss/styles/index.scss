@@ -1,9 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~ngx-smart-modal/ngx-smart-modal";
-// regular style toast 
-@import '~ngx-toastr/toastr';
-
-@import './reset/';
+@import './ngx-smart-modal.scss';
+@import './ngx-datatable.scss';
+@import './ng-autocompete.scss';
+@import './placeholders.scss';
 
 body {
   font-family: "Roboto", sans-serif;

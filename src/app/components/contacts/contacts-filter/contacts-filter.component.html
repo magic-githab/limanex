@@ -3,7 +3,8 @@
       <input #filterInput type="text" formControlName="filter"
         [placeholder]="'contacts.baseFilter.placeholder' | translate" />
       <div class="icon-wrapper">
-        <fa-icon [icon]="['fas', showIcon()]" [spin]="isLoading" (click)="clearInput()"></fa-icon>
+        <fa-icon [icon]="['fas', showIcon(isLoading$ | async)]" [spin]="isLoading$ | async" (click)="clearInput()">
+        </fa-icon>
       </div>
     </div>
     <button>

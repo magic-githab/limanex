@@ -1,86 +1,44 @@
 <ngx-smart-modal [closable]="false" #createContact identifier="createContact">
-  <div class="modal-wrapper">
-    <header>
-      <h2>
-        {{ 'contacts.create.title' | translate }}
-      </h2>
-      <fa-icon class="close" [icon]="['fas', 'times']" (click)="createContact.close()"></fa-icon>
-    </header>
 
-    <form [formGroup]="createContactForm" (ngSubmit)="onSubmit()">
-      <div class="wrapper">
-        <div class="input-wrapper">
-          <input type="text" [placeholder]="'contacts.create.firstNamePlaceholder' | translate"
-            formControlName="firstName" />
-          <label for="">{{ 'contacts.create.name' | translate }}</label>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" [placeholder]="'contacts.create.lastNamePlaceholder' | translate"
-            formControlName="lastName" />
-        </div>
-        <div class="input-wrapper">
-          <input type="text" [placeholder]="'contacts.create.fullNamePlaceholder' | translate"
-            formControlName="hebName" />
-        </div>
+  <form [formGroup]="createContactForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ getTranslateKey('title') | translate }}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-input formControlName="firstName" for="firstName" [labelTranslate]="getTranslateKey('name')"
+        [placeholderTranslate]="getTranslateKey('firstNamePlaceholder')" [isValid]="isControlValid('firstName')"
+        [isTouched]="isControlTouched('firstName')">
+      </app-input>
 
-        <div formArrayName="phones" *ngFor="
-            let phoneControl of createContactForm.get('phones')['controls'];
-            let i = index
-          ">
-          <div [formGroupName]="i">
-            <div class="input-wrapper">
-              <div class="phone-input-wrapper">
-                <ng-autocomplete #auto [data]="filteredPhoneCodes" [itemTemplate]="itemTemplate"
-                  [notFoundTemplate]="notFoundTemplate" [isLoading]="isPhonesLoading"
-                  (inputChanged)="filterPhoneCodes($event)" formControlName="prefix">
-                </ng-autocomplete>
-                <input type="text" formControlName="phone" />
-              </div>
-              <label for="">{{ 'contacts.create.phone' | translate }}</label>
-            </div>
+      <app-input formControlName="lastName" for="lastName"
+        [placeholderTranslate]="getTranslateKey('lastNamePlaceholder')" [isValid]="isControlValid('lastName')"
+        [isTouched]="isControlTouched('lastName')">
+      </app-input>
 
-            <div class="radio-buttons" formArrayName="platforms" *ngFor="
-                let platformControl of phoneControl.get('platforms')['controls'];
-                let j = index
-              ">
-              <div class="radio" *ngFor="let platform of platforms">
-                <label>
-                  <input type="radio" name="platforms" [value]="platform" [formControlName]="j" />
-                  <span>
-                    <fa-icon [icon]="['fas', 'check']"></fa-icon>
-                  </span>
-                </label>
-                <fa-icon [class]="platform" [icon]="['fab', platform]"></fa-icon>
-              </div>
-            </div>
-          </div>
-        </div>
+      <app-input formControlName="hebName" for="hebName" [placeholderTranslate]="getTranslateKey('fullNamePlaceholder')"
+        [isValid]="isControlValid('hebName')" [isTouched]="isControlTouched('hebName')">
+      </app-input>
 
-        <div class="input-wrapper">
-          <input type="text" formControlName="email" />
-          <label for="">{{ 'contacts.create.email' | translate }}</label>
-        </div>
-      </div>
+      <ng-container *ngFor="let phoneControl of createContactForm.get('phones')['controls']; let i = index"
+        formArrayName="phones">
+        <app-input-phone [labelTranslate]="getTranslateKey('phone')" [phoneCodes]="phoneCodes"
+          [socialMedias]="socialMedias" [formControlName]="i" [isTouched]="phoneControl.touched">
+        </app-input-phone>
+      </ng-container>
 
-      <div class="buttons">
-        <button type="button" (click)="closeModal()">
-          {{ 'contacts.create.cancel' | translate }}
-        </button>
-        <button [ngClass]="{ disabled: createContactForm.invalid }" [ngSwitch]="isCreateLoading">
-          <span *ngSwitchCase="false">{{
-            'contacts.create.submit' | translate
-          }}</span>
-          <fa-icon *ngSwitchCase="true" [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
-        </button>
-      </div>
-    </form>
-  </div>
+      <app-input formControlName="email" for="email" [labelTranslate]="getTranslateKey('email')"
+        [isValid]="isControlValid('email')" [isTouched]="isControlTouched('email')">
+      </app-input>
+    </div>
+    <div class="modal-footer">
+      <app-button classes="btn-outline-dark" [translateKey]="getTranslateKey('cancel')" (click)="closeModal()">
+      </app-button>
+      <app-button classes="btn-primary" [disabled]="createContactForm.invalid"
+        [translateKey]="getTranslateKey('submit')" (click)="onSubmit()" [isLoading]="isCreateLoading"></app-button>
+    </div>
+  </form>
+
 </ngx-smart-modal>
-
-<ng-template #itemTemplate let-item>
-  <a [innerHTML]="item"></a>
-</ng-template>
-
-<ng-template #notFoundTemplate let-notFound>
-  <div [innerHTML]="notFound"></div>
-</ng-template>

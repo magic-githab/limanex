@@ -1,0 +1,32 @@
+<form class="form-group row" [formGroup]="form">
+  <label *ngIf="isLabel" [ngClass]="['col-sm-2 col-form-label', labelClass, getLabelClass()]" [for]="for">
+    {{ labelTranslate ? (labelTranslate | translate) : label }}
+  </label>
+  <div class="col-sm-12 col-md-10">
+    <input id="typeahead-focus" type="text" [ngClass]="['form-control', getInputClass('prefix')]"
+      formControlName="prefix" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
+      (click)="click$.next($event.target.value)" #instance="ngbTypeahead" (blur)="onTouched()" />
+
+    <input [id]="for" [value]="value" [ngClass]="['form-control phone', class, getInputClass('phone')]" [type]="type"
+      formControlName="phone" (blur)="onTouched()">
+
+    <div class="radio-buttons">
+      <label formArrayName="platforms" *ngFor="let platform of form.get('platforms')['controls']; let i = index">
+        <input type="checkbox" [formControlName]="i" (blur)="onTouched()" />
+        <span>
+          <fa-icon [icon]="['fas', 'check']"></fa-icon>
+        </span>
+        <fa-icon [class]="socialMedias[i]" [icon]="['fab', socialMedias[i]]"></fa-icon>
+      </label>
+
+    </div>
+  </div>
+</form>
+
+<ng-template #itemTemplate let-item>
+  <a [innerHTML]="item"></a>
+</ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+</ng-template>

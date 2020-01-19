@@ -1,0 +1,171 @@
+.ngx-datatable.bootstrap {
+  background-color: white;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+
+  .datatable-header {
+    color: $dark_grey;
+    font-weight: bold;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .datatable-body {
+
+    p {
+      color: $grey;
+
+      &.name {
+
+        color: $blue;
+      }
+    }
+
+    .arrow {
+      color: $grey;
+      text-decoration: none;
+    }
+
+    .role {
+      display: inline-block;
+
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background-color: #818A91;
+      color: white;
+      margin-right: 5px;
+      margin-bottom: 2.5px;
+
+      font-weight: bold;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .datatable-row-wrapper {
+
+      .datatable-body-row {
+        cursor: pointer;
+      }
+
+      .datatable-row-detail {
+        padding: 15px;
+        border-top: 1px solid $light_grey;
+
+        line-height: 15px;
+
+        >div {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 10px;
+
+          >p {
+            font-weight: bold;
+          }
+
+          >div {
+            flex: 1;
+            overflow: hidden;
+
+            >p {
+              display: flex;
+
+              fa-icon {
+                margin-right: 5px;
+              }
+
+              &.phone span {
+
+                &:nth-child(n + 3) {
+                  display: inline-flex;
+                  align-items: center;
+
+                  &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    border-radius: 50%;
+                    background-color: $grey;
+                    margin: 0px 5px;
+                  }
+                }
+              }
+
+              &.id span {
+                display: inline-block;
+                background-color: $pinky;
+                padding: 3px;
+                border-radius: 5px;
+                color: $dark_pinky;
+                font-weight: bold;
+              }
+
+              &:nth-child(n + 2) {
+                margin-top: 2.5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .datatable-footer {
+    padding: 15px 10px;
+    background-color: white;
+    color: $dark_grey;
+    border-top: 1px solid $light_grey;
+
+    fa-icon {
+      position: absolute;
+      left: calc(50% - 7.5px);
+      color: $light_grey;
+      font-size: 16px;
+    }
+  }
+
+}
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: $xs_max) {
+  .ngx-datatable.bootstrap .datatable-row-wrapper .datatable-row-detail>div>p {
+    width: 65px;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: $sm_min) and (max-width: $sm_max) {
+  .ngx-datatable.bootstrap .datatable-row-wrapper .datatable-row-detail>div>p {
+    width: 65px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: $md_min) and (max-width: $md_max) {
+  .ngx-datatable.bootstrap .datatable-row-wrapper .datatable-row-detail>div>p {
+    width: 90px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: $lg_min) and (max-width: $lg_max) {
+  .ngx-datatable.bootstrap .datatable-row-wrapper .datatable-row-detail>div>p {
+    width: 90px;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: $xl_min) {
+  .ngx-datatable.bootstrap .datatable-row-wrapper .datatable-row-detail>div>p {
+    width: 90px;
+  }
+}

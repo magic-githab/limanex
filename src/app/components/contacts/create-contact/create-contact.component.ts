@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
-  ContactsService,
   ModalsService,
-  NotificationsService
+  NotificationsService,
+  ContactsService
 } from '@services/.';
+import { englishPattern, arabicPattern, emailPattern } from '@utils/.';
 import { CreateContactResponse } from '@models/.';
 
 @Component({
@@ -14,39 +15,35 @@ import { CreateContactResponse } from '@models/.';
 })
 export class CreateContactComponent implements OnInit {
   public createContactForm: FormGroup;
+
   public phoneCodes = [];
-  public filteredPhoneCodes = [];
-  public platforms = ['telegram', 'viber', 'whatsapp'];
+  public socialMedias = ['telegram', 'viber', 'whatsapp'];
 
   public isCreateLoading = false;
   public isPhonesLoading = false;
 
   constructor(
     private fb: FormBuilder,
-    private contactsService: ContactsService,
     private modalsService: ModalsService,
+    private contactsService: ContactsService,
     private notificationsService: NotificationsService
   ) {}
 
-  public getPhoneCodes(qry) {
-    this.isPhonesLoading = true;
-    this.contactsService.getPhoneCodes({ qry }).subscribe(res => {
-      this.isPhonesLoading = false;
-      this.phoneCodes = res.items.map(x => `+${x.phonePrefix}`);
+  private markFormGroupTouched(formGroup: FormGroup) {
+    (Object as any).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
     });
   }
 
-  public filterPhoneCodes(str) {
-    const newStr = str.includes('+') ? str : `+${str}`;
-    this.filteredPhoneCodes = this.phoneCodes
-      .filter(x => x.includes(newStr))
-      .slice(0, 7);
-  }
+  public getTranslateKey = key => `contacts.create.${key}`;
 
   public onSubmit() {
     if (this.createContactForm.valid) {
       const createFormValue = { ...this.createContactForm.value };
-
       for (const prop in createFormValue) {
         if (!createFormValue[prop]) {
           delete createFormValue[prop];
@@ -59,30 +56,39 @@ export class CreateContactComponent implements OnInit {
           this.isCreateLoading = false;
           res.msg.map(msg => this.notificationsService.pushNotification(msg));
           this.closeModal();
+          this.contactsService.getLastContact();
         });
     } else {
-      Object.keys(this.createContactForm.controls).forEach(field => {
-        const control = this.createContactForm.get(field);
-        control.markAsDirty({ onlySelf: true });
-      });
+      this.markFormGroupTouched(this.createContactForm);
     }
   }
 
-  public closeModal = () => this.modalsService.closeModal('createContact');
+  public getPhoneCodes(qry) {
+    this.isPhonesLoading = true;
+    this.contactsService.getPhoneCodes({ qry }).subscribe(res => {
+      this.isPhonesLoading = false;
+      this.phoneCodes = res.items.map(x => `+${x.phonePrefix}`);
+    });
+  }
+
+  public closeModal() {
+    this.createContactForm.reset();
+    this.modalsService.closeModal('createContact');
+  }
+
+  public isControlValid = ctrl => this.createContactForm.get(ctrl).valid;
+  public isControlTouched = ctrl => this.createContactForm.get(ctrl).touched;
 
   ngOnInit() {
     this.createContactForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      hebName: [''],
-      phones: this.fb.array([
-        this.fb.group({
-          prefix: [''],
-          phone: [''],
-          platforms: this.fb.array([''])
-        })
-      ]),
-      email: ['', [Validators.required, Validators.email]]
+      firstName: [
+        '',
+        [Validators.required, Validators.pattern(englishPattern)]
+      ],
+      lastName: ['', [Validators.required, Validators.pattern(englishPattern)]],
+      hebName: ['', [Validators.pattern(arabicPattern)]],
+      phones: this.fb.array(['']),
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]]
     });
 
     this.getPhoneCodes('');

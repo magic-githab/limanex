@@ -1,7 +1,8 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { debounceTime } from 'rxjs/operators';
 import { ContactsService } from '@services/.';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contacts-filter',
@@ -11,16 +12,17 @@ import { ContactsService } from '@services/.';
 export class ContactsFilterComponent implements OnInit {
   @ViewChild('filterInput', { static: false }) filterInput: ElementRef;
 
+  @Input() isLoading$: Observable<boolean>;
+
   public filterForm: FormGroup;
-  public isLoading: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private contactsService: ContactsService
   ) {}
 
-  public showIcon = () =>
-    this.isLoading
+  public showIcon = isLoading =>
+    isLoading
       ? 'spinner'
       : this.filterForm.get('filter').value
       ? 'times-circle'
@@ -35,13 +37,10 @@ export class ContactsFilterComponent implements OnInit {
   }
 
   public onFilter(val?) {
-    this.isLoading = true;
-    this.contactsService
-      .getContacts({
-        qry: val || '',
-        isFilter: true
-      })
-      .subscribe(() => (this.isLoading = false));
+    this.contactsService.getContacts({
+      qry: val || '',
+      isFilter: true
+    });
   }
 
   ngOnInit() {

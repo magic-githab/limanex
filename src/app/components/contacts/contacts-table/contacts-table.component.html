@@ -1,84 +1,92 @@
-<div class="table">
-  <div class="table-header">
-    <div class="row">
-      <div class="preview">
-        <div class="block arrow"></div>
-        <div class="block name">{{ 'contacts.table.name' | translate }}</div>
-        <div class="block address">
-          {{ 'contacts.table.address' | translate }}
-        </div>
-        <div class="block roles">{{ 'contacts.table.roles' | translate }}</div>
-      </div>
-    </div>
-  </div>
+<ngx-datatable #ngxTable class="bootstrap" [rows]="contacts$ | async" rowHeight="auto" columnMode="force"
+  footerHeight="auto" (activate)="onActivate($event)">
 
-  <div class="table-body">
-    <div *ngFor="let contact of contacts$ | async; let row = index"
-      [ngClass]="{ row: true, active: activeRow === row }">
-      <div class="preview" (click)="onClick(row)">
-        <fa-icon class="block arrow" [icon]="['fas', 'chevron-down']" [rotate]="activeRow === row ? 0 : 270">
-        </fa-icon>
-        <div class="block name">{{ contact.name | titlecase }}</div>
-        <div class="block address">
+  <!-- Column Templates -->
+  <ngx-datatable-column [width]="25" [resizeable]="false" [canAutoResize]="false">
+    <ng-template let-expanded="expanded" ngx-datatable-cell-template>
+      <a href="javascript:void(0)" class="arrow" title="Expand/Collapse Row" [class.datatable-icon-right]="!expanded"
+        [class.datatable-icon-down]="expanded">
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'contacts.table.name' | translate">
+    <ng-template let-contact="row" ngx-datatable-cell-template>
+      <p class="name">{{ contact.name | titlecase }}</p>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'contacts.table.address' | translate" *ngIf="showAddress">
+    <ng-template let-column="column" ngx-datatable-header-template>
+      <span>{{ column.name }}</span>
+    </ng-template>
+
+    <ng-template let-address="value" ngx-datatable-cell-template>
+      <p>{{ address.cityName | titlecase }}</p>
+      <p>{{ address.street | titlecase }}</p>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'contacts.table.roles' | translate">
+    <ng-template let-contact="row" ngx-datatable-cell-template>
+      <div *ngFor="let role of contact.roles | keyvalue" class="role">
+        {{ role.key | titlecase }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-footer>
+    <ng-template ngx-datatable-footer-template let-rowCount="rowCount">
+      {{ 'contacts.table.entires' | translate }}
+      {{ rowCount }}
+      <fa-icon *ngIf="isLoading$ | async" [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
+    </ng-template>
+  </ngx-datatable-footer>
+
+  <!-- Row Detail Template -->
+  <ngx-datatable-row-detail rowHeight="auto">
+    <ng-template let-contact="row" ngx-datatable-row-detail-template>
+      <div>
+        <p>{{ 'contacts.table.info' | translate }}:</p>
+        <div>
+          <p class="phone" *ngIf="contact.phones.length">
+            <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+            <span *ngFor="let phone of contact.phones">{{ phone.prefix }}{{ phone.phone }}</span>
+          </p>
+          <p *ngIf="contact.email">
+            <fa-icon [icon]="['far', 'envelope']"></fa-icon>
+            <span>{{ contact.email }}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="address" *ngIf="!showAddress">
+        <p>{{ 'contacts.table.address' | translate }}:</p>
+        <div>
           <p class="city">{{ contact.address.cityName | titlecase }}</p>
           <p class="street">{{ contact.address.street | titlecase }}</p>
         </div>
-        <div class="block roles">
-          <div *ngFor="let role of contact.roles | keyvalue">
-            {{ role.key | titlecase }}
-          </div>
+      </div>
+
+      <div>
+        <p>{{ 'contacts.table.id' | translate }}:</p>
+        <div>
+          <p class="id">
+            <span>{{ contact.uniqueCode }}</span>
+          </p>
         </div>
       </div>
-      <div class="more" *ngIf="activeRow === row">
+
+      <div>
+        <p>{{ 'contacts.table.added' | translate }}:</p>
         <div>
-          <p>{{ 'contacts.table.info' | translate }}:</p>
-          <div>
-            <p class="phone" *ngIf="contact.phones.length">
-              <fa-icon [icon]="['fas', 'phone']"></fa-icon>
-              <span *ngFor="let phone of contact.phones">{{ phone.prefix }}{{ phone.phone }}</span>
-            </p>
-            <p *ngIf="contact.email">
-              <fa-icon [icon]="['far', 'envelope']"></fa-icon>
-              <span>{{ contact.email }}</span>
-            </p>
-          </div>
-        </div>
-        <div class="address">
-          <p>{{ 'contacts.table.address' | translate }}:</p>
-          <div>
-            <p class="city">{{ contact.address.cityName | titlecase }}</p>
-            <p class="street">{{ contact.address.street | titlecase }}</p>
-          </div>
-        </div>
-        <div>
-          <p>{{ 'contacts.table.id' | translate }}:</p>
-          <div>
-            <p class="id">
-              <span>{{ contact.uniqueCode }}</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <p>{{ 'contacts.table.added' | translate }}:</p>
-          <div>
-            <p>
-              {{ contact.insertBy.name }} |
-              {{ contact.timestamp.date | date: 'dd/MM/yyyy HH:mm ' }}
-            </p>
-          </div>
+          <p>
+            {{ contact.insertBy.name }} |
+            {{ contact.timestamp.date | date: 'dd/MM/yyyy HH:mm ' }}
+          </p>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="preview">
-        <div class="block length">
-          {{ 'contacts.table.entires' | translate }}
-          {{ (contacts$ | async)?.length }}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="icon-wrapper" *ngIf="isLoading">
-  <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
-</div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+
+</ngx-datatable>

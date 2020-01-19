@@ -1,0 +1,9 @@
+<button [type]="type" [ngClass]="['btn btn-round', classes, disabled ? 'disabled' : '']" [ngSwitch]="isLoading">
+
+  <ng-container *ngSwitchCase="false" [ngSwitch]="translateKey.length > 0">
+    <ng-content *ngSwitchCase="false"></ng-content>
+    <ng-container *ngSwitchCase="true">{{ translateKey | translate}}</ng-container>
+  </ng-container>
+
+  <fa-icon *ngSwitchCase="true" [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
+</button>

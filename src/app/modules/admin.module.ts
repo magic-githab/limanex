@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 import {
-  ContactsTableComponent,
+  HeaderComponent,
+  SidebarComponent,
   ContactsFilterComponent,
   CreateContactComponent,
-  HeaderComponent,
-  SidebarComponent
+  ContactsTableComponent
 } from '@components/.';
 
 import { ContactsComponent } from '@pages/.';
@@ -23,15 +24,16 @@ import { SharedModule } from './shared.module';
     HeaderComponent,
     SidebarComponent,
     ContactsComponent,
-    ContactsTableComponent,
     ContactsFilterComponent,
-    CreateContactComponent
+    CreateContactComponent,
+    ContactsTableComponent
   ],
   imports: [
     SharedModule,
     AdminRoutingModule,
+    NgxDatatableModule,
     InfiniteScrollModule,
-    AutocompleteLibModule
+    InfiniteScrollModule
   ],
   providers: [ContactsService]
 })

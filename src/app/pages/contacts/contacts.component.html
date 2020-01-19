@@ -1,10 +1,11 @@
-<div class="contacts" infiniteScroll [infiniteScrollThrottle]="500" (scrolled)="getContacts()" [scrollWindow]="false">
-  <app-contacts-filter></app-contacts-filter>
-  <app-contacts-table [isLoading]="isLoading"></app-contacts-table>
+ <div class="contacts" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+   [scrollWindow]="false">
+   <app-contacts-filter [isLoading$]="isLoading$"></app-contacts-filter>
+   <app-contacts-table [contacts$]="contacts$" [isLoading$]="isLoading$"></app-contacts-table>
 
-  <div class="icon-wrapper" (click)="openCreateContact()">
-    <fa-icon [icon]="['fas', 'plus']"></fa-icon>
-  </div>
+   <div class="icon-wrapper" (click)="openCreateContact()">
+     <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+   </div>
 
-  <app-create-contact></app-create-contact>
-</div>
+   <app-create-contact></app-create-contact>
+ </div>

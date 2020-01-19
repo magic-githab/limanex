@@ -1,7 +1,7 @@
-<div class="main-wrapper">
-  <app-header (burgerClicked)="toogleSidebar()"></app-header>
+<div class="admin-wrapper">
+  <app-header (burgerClicked)="appSerice.toogleSidebar()"></app-header>
   <div class="content-wrapper">
-    <app-sidebar [show]="showSidebar"></app-sidebar>
+    <app-sidebar [show]="appSerice.isSideBarOpen$ | async"></app-sidebar>
     <div class="routes-wrapper">
       <router-outlet></router-outlet>
     </div>

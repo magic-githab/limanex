@@ -1,4 +1,3 @@
-export { SidebarComponent } from './sidebar/sidebar.component';
-export { HeaderComponent } from './header/header.component';
-
+export * from './admin';
 export * from './contacts';
+export * from './shared';

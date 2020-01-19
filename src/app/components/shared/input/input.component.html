@@ -1,0 +1,10 @@
+<form class="form-group row" [formGroup]="form">
+  <label *ngIf="isLabel" [ngClass]="['col-sm-2 col-form-label', labelClass, getLabelClass()]" [for]="for">
+    {{ labelTranslate ? (labelTranslate | translate) : label }}
+  </label>
+  <div class="col-sm-12 col-md-10">
+    <input [id]="for" [value]="value" [ngClass]="['form-control', class, getInputClass()]" [type]="type"
+      [placeholder]="placeholderTranslate ? (placeholderTranslate | translate) : placeholder" formControlName="input"
+      (blur)="onTouched()">
+  </div>
+</form>
