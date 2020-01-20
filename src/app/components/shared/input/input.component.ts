@@ -35,16 +35,16 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() value = '';
 
   @Input() isValid: boolean;
-  @Input() isTouched: boolean;
+  @Input() isDirty: boolean;
 
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
   public getInputClass = () =>
-    this.isTouched ? (this.isValid ? 'is-valid' : 'is-invalid') : '';
+    this.isDirty ? (this.isValid ? 'is-valid' : 'is-invalid') : '';
   public getLabelClass = () =>
-    this.isTouched ? (this.isValid ? 'text-success' : 'text-danger') : '';
+    this.isDirty ? (this.isValid ? 'text-success' : 'text-danger') : '';
 
   public onTouched = () => {};
 

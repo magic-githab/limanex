@@ -1,13 +1,15 @@
-  <form [formGroup]="filterForm">
-    <div class="input-wrapper">
-      <input #filterInput type="text" formControlName="filter"
-        [placeholder]="'contacts.baseFilter.placeholder' | translate" />
-      <div class="icon-wrapper">
-        <fa-icon [icon]="['fas', showIcon(isLoading$ | async)]" [spin]="isLoading$ | async" (click)="clearInput()">
-        </fa-icon>
-      </div>
+<form [formGroup]="filterForm">
+  <div class="input-group input-group-sm">
+    <input #filterInput class="form-control" type="text" formControlName="filter"
+      [placeholder]="'contacts.baseFilter.placeholder' | translate" />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary">
+        <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
+      </button>
     </div>
-    <button>
-      <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
-    </button>
-  </form>
+    <div class="icon-wrapper">
+      <fa-icon [icon]="['fas', showIcon(isLoading$ | async)]" [spin]="isLoading$ | async" (click)="clearInput()">
+      </fa-icon>
+    </div>
+  </div>
+</form>

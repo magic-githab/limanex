@@ -29,12 +29,12 @@ export class CreateContactComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {}
 
-  private markFormGroupTouched(formGroup: FormGroup) {
+  private markFormGroupDirty(formGroup: FormGroup) {
     (Object as any).values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
+      control.markAsDirty();
 
       if (control.controls) {
-        this.markFormGroupTouched(control);
+        this.markFormGroupDirty(control);
       }
     });
   }
@@ -59,7 +59,7 @@ export class CreateContactComponent implements OnInit {
           this.contactsService.getLastContact();
         });
     } else {
-      this.markFormGroupTouched(this.createContactForm);
+      this.markFormGroupDirty(this.createContactForm);
     }
   }
 
@@ -73,11 +73,12 @@ export class CreateContactComponent implements OnInit {
 
   public closeModal() {
     this.createContactForm.reset();
+    this.createContactForm.markAsPristine();
     this.modalsService.closeModal('createContact');
   }
 
   public isControlValid = ctrl => this.createContactForm.get(ctrl).valid;
-  public isControlTouched = ctrl => this.createContactForm.get(ctrl).touched;
+  public isControlDirty = ctrl => this.createContactForm.get(ctrl).dirty;
 
   ngOnInit() {
     this.createContactForm = this.fb.group({
@@ -87,8 +88,8 @@ export class CreateContactComponent implements OnInit {
       ],
       lastName: ['', [Validators.required, Validators.pattern(englishPattern)]],
       hebName: ['', [Validators.pattern(arabicPattern)]],
-      phones: this.fb.array(['']),
-      email: ['', [Validators.required, Validators.pattern(emailPattern)]]
+      phones: this.fb.array([]),
+      email: ['', [Validators.pattern(emailPattern)]]
     });
 
     this.getPhoneCodes('');

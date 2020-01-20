@@ -10,13 +10,13 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'contacts.table.name' | translate">
+  <ngx-datatable-column [name]="'contacts.table.name' | translate" [sortable]="false">
     <ng-template let-contact="row" ngx-datatable-cell-template>
-      <p class="name">{{ contact.name | titlecase }}</p>
+      <span class="text-primary">{{ contact.name | titlecase }}</span>
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'contacts.table.address' | translate" *ngIf="showAddress">
+  <ngx-datatable-column [name]="'contacts.table.address' | translate" [sortable]="false" *ngIf="showAddress">
     <ng-template let-column="column" ngx-datatable-header-template>
       <span>{{ column.name }}</span>
     </ng-template>
@@ -27,11 +27,11 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'contacts.table.roles' | translate">
+  <ngx-datatable-column [name]="'contacts.table.roles' | translate" [sortable]="false">
     <ng-template let-contact="row" ngx-datatable-cell-template>
-      <div *ngFor="let role of contact.roles | keyvalue" class="role">
+      <span *ngFor="let role of contact.roles | keyvalue" class="badge badge-secondary mr-1">
         {{ role.key | titlecase }}
-      </div>
+      </span>
     </ng-template>
   </ngx-datatable-column>
 

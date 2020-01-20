@@ -5,7 +5,7 @@ import {
   ViewChild,
   HostListener
 } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Contact } from '@models/.';
 
 @Component({
@@ -36,7 +36,7 @@ export class ContactsTableComponent implements OnInit {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize = () => (this.showAddress = window.innerWidth > 991.98);
 
   ngOnInit() {

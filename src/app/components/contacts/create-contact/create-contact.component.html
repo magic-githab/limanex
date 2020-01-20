@@ -10,34 +10,34 @@
     <div class="modal-body">
       <app-input formControlName="firstName" for="firstName" [labelTranslate]="getTranslateKey('name')"
         [placeholderTranslate]="getTranslateKey('firstNamePlaceholder')" [isValid]="isControlValid('firstName')"
-        [isTouched]="isControlTouched('firstName')">
+        [isDirty]="isControlDirty('firstName')">
       </app-input>
 
       <app-input formControlName="lastName" for="lastName"
         [placeholderTranslate]="getTranslateKey('lastNamePlaceholder')" [isValid]="isControlValid('lastName')"
-        [isTouched]="isControlTouched('lastName')">
+        [isDirty]="isControlDirty('lastName')">
       </app-input>
 
       <app-input formControlName="hebName" for="hebName" [placeholderTranslate]="getTranslateKey('fullNamePlaceholder')"
-        [isValid]="isControlValid('hebName')" [isTouched]="isControlTouched('hebName')">
+        [isValid]="isControlValid('hebName')" [isDirty]="isControlDirty('hebName')">
       </app-input>
 
       <ng-container *ngFor="let phoneControl of createContactForm.get('phones')['controls']; let i = index"
         formArrayName="phones">
         <app-input-phone [labelTranslate]="getTranslateKey('phone')" [phoneCodes]="phoneCodes"
-          [socialMedias]="socialMedias" [formControlName]="i" [isTouched]="phoneControl.touched">
+          [socialMedias]="socialMedias" [formControlName]="i" [isDirty]="phoneControl.dirty">
         </app-input-phone>
       </ng-container>
 
       <app-input formControlName="email" for="email" [labelTranslate]="getTranslateKey('email')"
-        [isValid]="isControlValid('email')" [isTouched]="isControlTouched('email')">
+        [isValid]="isControlValid('email')" [isDirty]="isControlDirty('email')">
       </app-input>
     </div>
     <div class="modal-footer">
-      <app-button classes="btn-outline-dark" [translateKey]="getTranslateKey('cancel')" (click)="closeModal()">
+      <app-button classes="btn-outline-secondary" [translateKey]="getTranslateKey('cancel')" (click)="closeModal()">
       </app-button>
-      <app-button classes="btn-primary" [disabled]="createContactForm.invalid"
-        [translateKey]="getTranslateKey('submit')" (click)="onSubmit()" [isLoading]="isCreateLoading"></app-button>
+      <app-button classes="btn-dark" [disabled]="createContactForm.invalid" [translateKey]="getTranslateKey('submit')"
+        (click)="onSubmit()" [isLoading]="isCreateLoading"></app-button>
     </div>
   </form>
 

@@ -3,97 +3,49 @@
 form {
   width: 100%;
 
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
-
   background-color: #F3F3F4;
   padding: 10px 8px;
   display: flex;
 
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+
   border-radius: 5px;
 
-  .input-wrapper {
+  .input-group {
     position: relative;
-    flex: 1;
-
-    input {
-      color: #373A3C;
-      width: 100%;
-      padding: 7px 0px 7px 12px;
-      border-radius: 5px 0px 0px 5px;
-      border: 1px solid $light_grey;
-    }
 
     .icon-wrapper {
       position: absolute;
       top: 0;
-      right: 10px;
+      right: 37.5px;
 
       height: 100%;
 
       display: flex;
       align-items: center;
 
+      z-index: 3;
+
       fa-icon {
         color: $light_grey;
+        background-color: white;
         cursor: pointer;
       }
-    }
-  }
-
-  button {
-    background-color: #E6E6E6;
-    padding: 0px 8px;
-
-    border: 1px solid $light_grey;
-
-    border-radius: 0px 5px 5px 0px;
-    border-left: none;
-
-    fa-icon {
-      font-size: 14px;
-      color: #777777;
-      vertical-align: middle;
     }
   }
 }
 
 // Extra small devices (portrait phones, less than 576px)
-@media (max-width: $xs_max) {
-  .input-wrapper input {
-    font-size: 8px;
-  }
-}
+@media (max-width: $xs_max) {}
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: $sm_min) and (max-width: $sm_max) {
-  .input-wrapper input {
-    font-size: 10px;
-  }
-
-}
+@media (min-width: $sm_min) and (max-width: $sm_max) {}
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: $md_min) and (max-width: $md_max) {
-  .input-wrapper input {
-    font-size: 12px;
-  }
-
-}
+@media (min-width: $md_min) and (max-width: $md_max) {}
 
 // Large devices (desktops, 992px and up)
-@media (min-width: $lg_min) and (max-width: $lg_max) {
-  .input-wrapper input {
-    font-size: 14px;
-  }
-
-}
+@media (min-width: $lg_min) and (max-width: $lg_max) {}
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: $xl_min) {
-  .input-wrapper input {
-    font-size: 14px;
-  }
-
-}
+@media (min-width: $xl_min) {}

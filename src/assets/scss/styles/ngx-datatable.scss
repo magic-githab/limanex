@@ -9,44 +9,13 @@
   .datatable-header {
     color: $dark_grey;
     font-weight: bold;
-
-    span {
-      cursor: pointer;
-    }
   }
 
   .datatable-body {
 
-    p {
-      color: $grey;
-
-      &.name {
-
-        color: $blue;
-      }
-    }
-
     .arrow {
       color: $grey;
       text-decoration: none;
-    }
-
-    .role {
-      display: inline-block;
-
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 5px;
-      background-color: #818A91;
-      color: white;
-      margin-right: 5px;
-      margin-bottom: 2.5px;
-
-      font-weight: bold;
-
-      &:last-child {
-        margin-right: 0;
-      }
     }
 
     .datatable-row-wrapper {
@@ -60,6 +29,7 @@
         border-top: 1px solid $light_grey;
 
         line-height: 15px;
+        color: $grey;
 
         >div {
           display: flex;

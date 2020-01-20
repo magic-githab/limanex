@@ -16,6 +16,7 @@ import {
   filter,
   map
 } from 'rxjs/operators';
+import { phonePattern, prefixPattern } from '@utils/validators';
 
 @Component({
   selector: 'app-input-phone',
@@ -44,7 +45,7 @@ export class InputPhoneComponent implements OnInit, ControlValueAccessor {
 
   @Input() value = '';
 
-  @Input() isTouched: boolean;
+  @Input() isDirty: boolean;
 
   @Input() phoneCodes = [];
   @Input() socialMedias = [];
@@ -100,14 +101,10 @@ export class InputPhoneComponent implements OnInit, ControlValueAccessor {
   public setDisabledState(isDisabled: boolean): void {}
 
   public getInputClass = ctrl =>
-    this.isTouched
-      ? this.form.get(ctrl).valid
-        ? 'is-valid'
-        : 'is-invalid'
-      : '';
+    this.isDirty ? (this.form.get(ctrl).valid ? 'is-valid' : 'is-invalid') : '';
 
   public getLabelClass = () =>
-    this.isTouched
+    this.isDirty
       ? this.form.get('phone').valid && this.form.get('prefix').valid
         ? 'text-success'
         : 'text-danger'
@@ -115,8 +112,8 @@ export class InputPhoneComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.form = this.fb.group({
-      prefix: ['', [Validators.pattern(/^\+?(0|[1-9]\d*)?$/)]],
-      phone: ['', [Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      prefix: ['', [Validators.pattern(prefixPattern)]],
+      phone: ['', [Validators.pattern(phonePattern)]],
       platforms: this.fb.array([])
     });
 

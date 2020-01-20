@@ -8,7 +8,7 @@ import { AppService } from '@services/.';
 export class AdminComponent implements OnInit {
   constructor(public appSerice: AppService) {}
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   function = () => this.appSerice.onResize();
 
   ngOnInit() {
