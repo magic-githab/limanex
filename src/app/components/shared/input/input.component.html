@@ -5,6 +5,6 @@
   <div class="col-sm-12 col-md-10">
     <input [id]="for" [value]="value" [ngClass]="['form-control', class, getInputClass()]" [type]="type"
       [placeholder]="placeholderTranslate ? (placeholderTranslate | translate) : placeholder" formControlName="input"
-      (blur)="onTouched()">
+      (blur)="onTouched()" (keypress)="validateInput($event)">
   </div>
 </form>

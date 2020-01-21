@@ -10,16 +10,16 @@
     <div class="modal-body">
       <app-input formControlName="firstName" for="firstName" [labelTranslate]="getTranslateKey('name')"
         [placeholderTranslate]="getTranslateKey('firstNamePlaceholder')" [isValid]="isControlValid('firstName')"
-        [isDirty]="isControlDirty('firstName')">
+        [isDirty]="isControlDirty('firstName')" [pattern]="englishPattern">
       </app-input>
 
       <app-input formControlName="lastName" for="lastName"
         [placeholderTranslate]="getTranslateKey('lastNamePlaceholder')" [isValid]="isControlValid('lastName')"
-        [isDirty]="isControlDirty('lastName')">
+        [isDirty]="isControlDirty('lastName')" [pattern]="englishPattern">
       </app-input>
 
       <app-input formControlName="hebName" for="hebName" [placeholderTranslate]="getTranslateKey('fullNamePlaceholder')"
-        [isValid]="isControlValid('hebName')" [isDirty]="isControlDirty('hebName')">
+        [isValid]="isControlValid('hebName')" [isDirty]="isControlDirty('hebName')" [pattern]="arabicPattern">
       </app-input>
 
       <ng-container *ngFor="let phoneControl of createContactForm.get('phones')['controls']; let i = index"
@@ -29,7 +29,7 @@
         </app-input-phone>
       </ng-container>
 
-      <app-input formControlName="email" for="email" [labelTranslate]="getTranslateKey('email')"
+      <app-input type="email" formControlName="email" for="email" [labelTranslate]="getTranslateKey('email')"
         [isValid]="isControlValid('email')" [isDirty]="isControlDirty('email')">
       </app-input>
     </div>

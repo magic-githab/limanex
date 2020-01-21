@@ -33,6 +33,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholderTranslate = '';
 
   @Input() value = '';
+  @Input() pattern: RegExp = /$/;
 
   @Input() isValid: boolean;
   @Input() isDirty: boolean;
@@ -60,6 +61,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   public registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+  public validateInput(e) {
+    if (this.pattern.test(e.key)) {
+      return true;
+    } else {
+      e.preventDefault();
+    }
   }
 
   setDisabledState(isDisabled: boolean): void {}

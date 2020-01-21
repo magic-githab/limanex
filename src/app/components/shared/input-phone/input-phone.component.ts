@@ -110,6 +110,14 @@ export class InputPhoneComponent implements OnInit, ControlValueAccessor {
         : 'text-danger'
       : '';
 
+  public validateInput(e) {
+    if (phonePattern.test(e.key)) {
+      return true;
+    } else {
+      e.preventDefault();
+    }
+  }
+
   ngOnInit() {
     this.form = this.fb.group({
       prefix: ['', [Validators.pattern(prefixPattern)]],

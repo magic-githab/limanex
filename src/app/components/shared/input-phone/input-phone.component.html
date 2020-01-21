@@ -8,7 +8,7 @@
       (click)="click$.next($event.target.value)" #instance="ngbTypeahead" (blur)="onTouched()" />
 
     <input [id]="for" [value]="value" [ngClass]="['form-control phone', class, getInputClass('phone')]" [type]="type"
-      formControlName="phone" (blur)="onTouched()">
+      formControlName="phone" (keypress)="validateInput($event)" (blur)="onTouched()">
 
     <div class="radio-buttons">
       <label formArrayName="platforms" *ngFor="let platform of form.get('platforms')['controls']; let i = index">

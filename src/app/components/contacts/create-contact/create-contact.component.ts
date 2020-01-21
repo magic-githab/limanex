@@ -22,6 +22,10 @@ export class CreateContactComponent implements OnInit {
   public isCreateLoading = false;
   public isPhonesLoading = false;
 
+  public arabicPattern = arabicPattern;
+  public englishPattern = englishPattern;
+  public emailPattern = emailPattern;
+
   constructor(
     private fb: FormBuilder,
     private modalsService: ModalsService,
@@ -72,7 +76,13 @@ export class CreateContactComponent implements OnInit {
   }
 
   public closeModal() {
-    this.createContactForm.reset();
+    this.createContactForm.reset({
+      phones: [
+        {
+          prefix: ['+380']
+        }
+      ]
+    });
     this.createContactForm.markAsPristine();
     this.modalsService.closeModal('createContact');
   }
@@ -83,12 +93,16 @@ export class CreateContactComponent implements OnInit {
   ngOnInit() {
     this.createContactForm = this.fb.group({
       firstName: [
-        '',
+        'lol',
         [Validators.required, Validators.pattern(englishPattern)]
       ],
       lastName: ['', [Validators.required, Validators.pattern(englishPattern)]],
       hebName: ['', [Validators.pattern(arabicPattern)]],
-      phones: this.fb.array([]),
+      phones: this.fb.array([
+        {
+          prefix: ['+380']
+        }
+      ]),
       email: ['', [Validators.pattern(emailPattern)]]
     });
 
